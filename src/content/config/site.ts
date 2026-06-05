@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = siteConfigSchema.parse({
   description:
     "Frontend engineer with ~3 years of experience building scalable SaaS applications for logistics and e-commerce. Specialized in React.js, Next.js, TypeScript, and real-time systems at Omniful.",
   tagline:
-    "Building scalable SaaS applications and real-time frontend systems for high-volume operations.",
+    "From intern to team lead in 2 years — frontend systems for high-volume logistics SaaS.",
   primaryCta: {
     label: "View Work",
     href: "#work",
