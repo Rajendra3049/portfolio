@@ -6,18 +6,13 @@ import { ProjectCoverImage } from "@/shared/ui/project-cover-image";
 
 type ProjectCardProps = {
   project: Project;
-  featured?: boolean;
 };
 
-export const ProjectCard = ({ project, featured = false }: ProjectCardProps) => {
+export const ProjectCard = ({ project }: ProjectCardProps) => {
   const primaryCategory = project.categories[0];
 
   return (
-    <article
-      className={`group overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/90 transition-all hover:-translate-y-0.5 hover:border-zinc-600 hover:shadow-[0_12px_28px_rgba(0,0,0,0.3)] ${
-        featured ? "md:col-span-1" : ""
-      }`}
-    >
+    <article className="group h-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/90 transition-all hover:-translate-y-0.5 hover:border-zinc-600 hover:shadow-[0_12px_28px_rgba(0,0,0,0.3)]">
       <Link href={`/work/${project.slug}`} className="block" tabIndex={0}>
         <div className="relative">
           <ProjectCoverImage
