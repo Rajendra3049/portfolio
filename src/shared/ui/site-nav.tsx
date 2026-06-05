@@ -273,7 +273,7 @@ export const SiteNav = () => {
         </Link>
 
         <nav
-          className="hidden items-center gap-0.5 rounded-xl border border-zinc-800/90 bg-zinc-900/50 p-1 md:flex"
+          className="hidden items-center gap-2 rounded-xl  bg-zinc-900/50 p-1 md:flex"
           aria-label="Primary navigation"
         >
           {siteConfig.navItems.map((item) => (
