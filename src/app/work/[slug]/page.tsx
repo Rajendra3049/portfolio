@@ -4,7 +4,14 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug, projects } from "@/content";
 import { siteConfig } from "@/content/config/site";
 import { getLinkTargetProps } from "@/shared/lib/link";
+import {
+  CaseStudyList,
+  CaseStudyProse,
+  CaseStudySection,
+} from "@/shared/ui/case-study-section";
 import { Pill } from "@/shared/ui/pill";
+import { ProjectCoverImage } from "@/shared/ui/project-cover-image";
+import { ScreenshotGallery } from "@/shared/ui/screenshot-gallery";
 import { SectionShell } from "@/shared/ui/section-shell";
 
 type WorkDetailPageProps = {
@@ -32,10 +39,10 @@ export const generateMetadata = async ({
 
   return {
     title,
-    description: project.shortDescription,
+    description: project.heroTagline,
     openGraph: {
       title,
-      description: project.shortDescription,
+      description: project.heroTagline,
       url: `https://${siteConfig.domain}/work/${project.slug}`,
     },
   };
@@ -49,71 +56,125 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
     notFound();
   }
 
+  const { caseStudy } = project;
+
   return (
     <SectionShell className="border-t-0 bg-zinc-950 pt-12 sm:pt-16">
       <div className="max-w-4xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400">
-          Project Case Study
-        </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-          {project.title}
-        </h1>
-        <p className="mt-4 text-base leading-8 text-zinc-300">{project.longDescription}</p>
+        <Link
+          href="/#work"
+          className="text-sm text-zinc-400 transition-colors hover:text-zinc-200"
+        >
+          ← Back to work
+        </Link>
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.techStack.map((tech) => (
-            <Pill key={tech}>{tech}</Pill>
-          ))}
+        <div className="mt-6 overflow-hidden rounded-xl border border-zinc-800">
+          <ProjectCoverImage
+            slug={project.slug}
+            title={project.title}
+            category={project.categories[0]}
+            variant="hero"
+          />
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          <article className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
-            <h2 className="text-base font-semibold text-zinc-100">Architecture Notes</h2>
-            <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-              {project.architectureNotes.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 size-1.5 rounded-full bg-zinc-500" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-          <article className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
-            <h2 className="text-base font-semibold text-zinc-100">Engineering Highlights</h2>
-            <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-              {project.engineeringHighlights.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 size-1.5 rounded-full bg-zinc-500" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-          <article className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
-            <h2 className="text-base font-semibold text-zinc-100">Challenges</h2>
-            <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-              {project.challenges.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 size-1.5 rounded-full bg-zinc-500" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-          <article className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
-            <h2 className="text-base font-semibold text-zinc-100">Outcomes</h2>
-            <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-              {project.outcomes.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 size-1.5 rounded-full bg-zinc-500" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+        <header className="mt-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400">
+            Project Case Study
+          </p>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+            {project.title}
+          </h1>
+          <p className="mt-4 text-base leading-8 text-zinc-200 sm:text-lg">{project.heroTagline}</p>
+          <p className="mt-3 text-sm leading-7 text-zinc-400">{project.longDescription}</p>
+
+          <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-400">
+            <div>
+              <dt className="sr-only">Role</dt>
+              <dd>
+                <span className="text-zinc-500">Role · </span>
+                {project.role}
+              </dd>
+            </div>
+            <div>
+              <dt className="sr-only">Timeline</dt>
+              <dd>
+                <span className="text-zinc-500">Timeline · </span>
+                {project.timeline}
+              </dd>
+            </div>
+          </dl>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
+              <Pill key={tech}>{tech}</Pill>
+            ))}
+          </div>
+
+          <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {project.metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="rounded-lg border border-zinc-800 bg-zinc-900/80 p-3"
+              >
+                <dt className="text-xs uppercase tracking-wide text-zinc-500">{metric.label}</dt>
+                <dd className="mt-1 text-sm font-medium text-zinc-100">{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={project.liveUrl}
+              {...getLinkTargetProps(project.liveUrl)}
+              className="rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
+            >
+              Live Product
+            </Link>
+            <Link
+              href={project.githubUrl}
+              {...getLinkTargetProps(project.githubUrl)}
+              className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+            >
+              Source Code
+            </Link>
+          </div>
+        </header>
+
+        <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
+          <CaseStudySection eyebrow="01 — Problem" title="What problem does it solve?">
+            <CaseStudyProse paragraphs={[project.problem]} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="02 — Origin" title="How the idea took shape">
+            <CaseStudyProse paragraphs={[project.originStory]} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="03 — Role" title="My role">
+            <CaseStudyList items={caseStudy.myRole} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="04 — Challenge" title="The challenge">
+            <CaseStudyList items={caseStudy.challenge} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="05 — Approach" title="The approach">
+            <CaseStudyList items={caseStudy.approach} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="06 — Outcomes" title="Key outcomes">
+            <CaseStudyList items={caseStudy.outcomes} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="07 — Differentiator" title="What makes this different">
+            <CaseStudyList items={caseStudy.differentiator} />
+          </CaseStudySection>
+
+          <CaseStudySection eyebrow="08 — Gallery" title="Product screens">
+            <ScreenshotGallery screenshots={project.screenshots} slug={project.slug} />
+          </CaseStudySection>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <footer className="mt-12 flex flex-wrap gap-3 border-t border-zinc-800 pt-8">
           <Link
             href={project.liveUrl}
             {...getLinkTargetProps(project.liveUrl)}
@@ -128,7 +189,13 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
           >
             Source Code
           </Link>
-        </div>
+          <Link
+            href="/#work"
+            className="rounded-md border border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-400 transition hover:bg-zinc-900 hover:text-zinc-200"
+          >
+            All projects
+          </Link>
+        </footer>
       </div>
     </SectionShell>
   );

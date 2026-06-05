@@ -4,30 +4,59 @@ export const wingShooterProject: Project = projectSchema.parse({
   title: "WingShooter",
   slug: "wingshooter",
   shortDescription:
-    "Browser-based real-time shooting game with responsive controls, collision detection, and score-driven gameplay.",
+    "Real-time browser shooting game with responsive controls, collision detection, and score-driven gameplay.",
+  heroTagline:
+    "Shipped a playable real-time browser game under deadline — proving collision logic, game state, and team coordination in production.",
   longDescription:
-    "WingShooter is a collaborative browser game focused on real-time interaction, where players navigate shooting mechanics, scoring logic, and responsive UI feedback in a fast-paced gameplay loop.",
-  engineeringHighlights: [
-    "Implemented player controls, bullet mechanics, collision detection, scoring logic, and sound effects.",
-    "Managed gameplay state with Redux Thunk for smooth and predictable state transitions.",
-    "Collaborated in a team environment to deliver real-time gameplay mechanics in the browser.",
-    "Optimized rendering performance to keep interactions responsive during active gameplay.",
+    "WingShooter is a collaborative browser game where players shoot targets, dodge threats, and chase high scores through fast-paced, real-time interaction loops.",
+  problem:
+    "Browser games must handle continuous input, collision detection, and score updates without frame drops or unpredictable state — especially when multiple systems update in parallel.",
+  originStory:
+    "Built during an intensive team sprint at Masai School, WingShooter started as a construct-week challenge: clone real-time gameplay mechanics in the browser within days. The idea was to stress-test state management, event-driven updates, and performance under tight timelines — skills that translate directly to real-time product UIs.",
+  role: "Frontend engineer — gameplay mechanics, state, and UI (team of 4)",
+  timeline: "2022 · 5-day team sprint",
+  caseStudy: {
+    myRole: [
+      "Implemented player controls, bullet mechanics, collision detection, scoring logic, and sound feedback.",
+      "Managed gameplay state with Redux Thunk for predictable action-driven updates.",
+      "Collaborated with teammates on API integration and delivery within a fixed sprint window.",
+    ],
+    challenge: [
+      "Maintaining smooth real-time interactions while processing collision and score updates every frame.",
+      "Coordinating frontend gameplay logic with team-owned backend APIs under a 5-day deadline.",
+      "Preventing performance degradation as event listeners and state updates stacked during active play.",
+    ],
+    approach: [
+      "Componentized game surfaces — controls, targets, scoreboard — for isolated render boundaries.",
+      "Built an event-driven collision and scoring pipeline tuned for responsive feedback loops.",
+      "Used Redux Thunk to orchestrate async gameplay actions without race conditions.",
+      "Performance-conscious render updates to keep animation-heavy interactions smooth in the browser.",
+    ],
+    outcomes: [
+      "Delivered a playable browser game with live deployment and collaborative team execution.",
+      "Strengthened real-time state management skills applicable to live dashboards and notification systems.",
+      "Demonstrated ability to ship under deadline — relevant to fast-moving SaaS product teams.",
+    ],
+    differentiator: [
+      "Real-time systems proof — not a static landing page or form-based CRUD app.",
+      "Team collaboration with clear ownership of gameplay frontend under production-like pressure.",
+      "Shows debugging and performance instincts that carry over to Omniful's real-time order tracking work.",
+    ],
+  },
+  techStack: ["TypeScript", "React", "Redux Thunk", "Node.js", "Express.js", "MongoDB"],
+  coverImage: "/work/wingshooter-cover.png",
+  screenshots: [
+    {
+      src: "/work/wingshooter-1.png",
+      caption: "Active gameplay with targets, scoring, and responsive player controls.",
+      alt: "WingShooter gameplay screen with score display",
+    },
+    {
+      src: "/work/wingshooter-2.png",
+      caption: "Game-over and score feedback loop driving replay engagement.",
+      alt: "WingShooter game over screen with final score",
+    },
   ],
-  architectureNotes: [
-    "Redux Thunk-based game state orchestration for action-driven updates.",
-    "Componentized game surfaces for controls, targets, and score feedback.",
-    "Event-driven collision and scoring pipeline for real-time responsiveness.",
-    "Performance-conscious render updates for animation-heavy interaction loops.",
-  ],
-  techStack: [
-    "TypeScript",
-    "React",
-    "Redux Thunk",
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-  ],
-  screenshots: ["/work/wingshooter-1.png", "/work/wingshooter-2.png"],
   liveUrl: "https://wingshooter.vercel.app/",
   githubUrl: "https://github.com/DeshmukhMandar3/WingShooter",
   featured: false,
@@ -35,13 +64,6 @@ export const wingShooterProject: Project = projectSchema.parse({
   metrics: [
     { label: "Gameplay Systems", value: "5+" },
     { label: "Team Size", value: "4" },
-  ],
-  challenges: [
-    "Maintaining smooth real-time interactions while managing collision and score updates.",
-    "Coordinating frontend gameplay logic with team-owned backend APIs under tight timelines.",
-  ],
-  outcomes: [
-    "Delivered a playable browser game with live deployment and collaborative team execution.",
-    "Strengthened real-time state management and performance tuning skills in a product-like setting.",
+    { label: "Sprint", value: "5 days" },
   ],
 });

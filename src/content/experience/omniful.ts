@@ -1,38 +1,66 @@
 import { experienceSchema, type Experience } from "@/entities/experience";
 
 export const omnifulExperience: Experience = experienceSchema.parse({
-  role: "Associate Team Lead · Software Development Engineer",
+  role: "Associate Team Lead",
   company: "Omniful.ai",
-  duration: "Sep 2023 – Present",
+  duration: "Sep 2023 – Present · Gurugram, India",
   summary:
-    "Leading frontend delivery for order management, sales channels, and shipment creation modules used by 100+ enterprise tenants processing 52K+ orders per day.",
-  impactPoints: [
-    "Cut page load time by 30% through React Query caching, route-level code splitting, and memoized rendering across 15+ table-heavy pages.",
-    "Reduced code duplication by 40% via reusable components, custom hooks, and shared utilities.",
-    "Migrated shipment creation from a multi-screen manual flow to an automated pipeline, reducing processing time from minutes to under 10 seconds.",
-    "Built a centralized sales-channel dashboard unifying Shopify, Amazon, and other platforms for multi-channel order and inventory management.",
-    "Implemented real-time order tracking with Pusher and notification alerts with Beam for instant user feedback.",
-    "Introduced route- and action-level RBAC with CASL ability mappings for safe multi-role tenant UI behavior.",
-    "Led feature planning, code reviews, and mentoring while collaborating across product, backend, and QA teams.",
+    "Supply chain and logistics SaaS — joined as an intern, grew into full-time engineering, and now lead frontend delivery across OMS, sales channels, and shipment systems.",
+  positions: [
+    {
+      role: "Associate Team Lead",
+      duration: "Jul 2025 – Present",
+      scope: "Leadership & delivery",
+      isPromotion: true,
+      isCurrent: true,
+      impactPoints: [
+        "Promoted to lead frontend delivery across OMS, sales channel, and shipment modules.",
+        "Run feature planning, sprint delivery, system design reviews, and code reviews for scalability and performance.",
+        "Mentor junior engineers and partner with product, backend, and QA on end-to-end launches.",
+        "Foster team growth through knowledge sharing and engineering best practices.",
+      ],
+    },
+    {
+      role: "Software Engineer",
+      duration: "Mar 2024 – Jun 2025",
+      scope: "OMS & real-time systems",
+      impactPoints: [
+        "Engineered Order Management, Sales Channel Services, and Shipment Creation systems for 100+ enterprise tenants.",
+        "Cut page load times by 30% with React Query caching and reduced code duplication by 40%.",
+        "Built a centralized sales-channel dashboard and real-time order tracking with live notifications.",
+        "Developed reusable components, custom hooks, and shared utilities across table-heavy product surfaces.",
+      ],
+    },
+    {
+      role: "Software Engineer Intern",
+      duration: "Sep 2023 – Feb 2024",
+      scope: "Internship · foundational product UI",
+      impactPoints: [
+        "Joined as an intern and shipped production React features in a fast-moving logistics SaaS team.",
+        "Built responsive UIs, reusable components, and form flows with React Hook Form and Redux Toolkit.",
+        "Improved UI performance and contributed to clean code, Git, and Agile practices.",
+      ],
+    },
   ],
   stack: [
-    "React",
+    "React.js",
     "Next.js",
     "TypeScript",
     "React Query",
     "Redux Toolkit",
-    "CASL",
-    "Pusher",
-    "Tailwind CSS",
+    "React Hook Form",
+    "Bootstrap",
+    "JavaScript",
+    "SCSS",
   ],
   achievements: [
+    "Grew from Software Engineer Intern to Associate Team Lead within two years.",
     "Owned core OMS, sales channel, and shipment modules in a high-scale logistics SaaS platform.",
-    "Built an AI-assisted Cursor workflow (Skills, context files, PR-review agent) adopted by the frontend team, cutting feature scaffolding time by ~50%.",
-    "Conducted system design and code reviews to improve scalability, performance, and clean coding practices.",
+    "Built an AI-assisted Cursor workflow adopted by the frontend team, cutting feature scaffolding time by ~50%.",
   ],
   metrics: [
-    { label: "Enterprise Tenants", value: "100+" },
-    { label: "Daily Order Volume", value: "52K+" },
+    { label: "Tenure at Omniful", value: "2+ yrs" },
     { label: "Load Time Reduction", value: "30%" },
+    { label: "Code Duplication Cut", value: "40%" },
   ],
 });
