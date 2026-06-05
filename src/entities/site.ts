@@ -5,6 +5,11 @@ export const linkSchema = z.object({
   href: z.string().min(1),
 });
 
+export const navBrandSchema = z.object({
+  monogram: z.string().min(1),
+  tagline: z.string().min(1),
+});
+
 export const siteConfigSchema = z.object({
   name: z.string().min(1),
   domain: z.string().min(1),
@@ -13,7 +18,9 @@ export const siteConfigSchema = z.object({
   tagline: z.string().min(1),
   primaryCta: linkSchema,
   secondaryCta: linkSchema,
+  navBrand: navBrandSchema,
   navItems: z.array(linkSchema),
+  navCta: linkSchema,
   socialLinks: z.array(linkSchema),
 });
 

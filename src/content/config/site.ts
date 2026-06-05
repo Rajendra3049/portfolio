@@ -16,13 +16,20 @@ export const siteConfig: SiteConfig = siteConfigSchema.parse({
     label: "Get In Touch",
     href: "#contact",
   },
+  navBrand: {
+    monogram: "RP",
+    tagline: "Frontend · SaaS",
+  },
   navItems: [
     { label: "Experience", href: "#experience" },
     { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
-    { label: "Resume", href: "/resume" },
   ],
+  navCta: {
+    label: "Resume",
+    href: "/resume",
+  },
   socialLinks: [
     { label: "GitHub", href: "https://github.com/Rajendra3049" },
     {
