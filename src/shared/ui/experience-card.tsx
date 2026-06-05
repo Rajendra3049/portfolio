@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useMemo, useState } from "react";
 import { type Experience, type ExperiencePosition } from "@/entities/experience";
@@ -248,15 +247,18 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
         </div>
       )}
 
-      <p className="mt-5 text-xs text-zinc-500">
-        Tech stack and proof points live in{" "}
-        <Link
-          href="#capabilities"
-          className="font-medium text-zinc-300 underline-offset-2 transition-colors hover:text-zinc-100 hover:underline"
-        >
-          Capabilities
-        </Link>
-        .
+      <ul className="mt-6 space-y-2 border-t border-zinc-800 pt-5">
+        {experience.achievements.map((achievement) => (
+          <li key={achievement} className="flex gap-2 text-sm text-zinc-400">
+            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emerald-500/70" aria-hidden />
+            <span>{achievement}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p className="mt-5 text-xs leading-6 text-zinc-500">
+        <span className="font-semibold uppercase tracking-wide text-zinc-400">Stack · </span>
+        {experience.stack.join(" · ")}
       </p>
     </article>
   );
