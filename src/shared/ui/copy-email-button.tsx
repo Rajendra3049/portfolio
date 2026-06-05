@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { Button } from "@/shared/ui/button";
+import { cn } from "@/shared/lib/utils";
 
 type CopyEmailButtonProps = {
   email: string;
+  className?: string;
 };
 
-export const CopyEmailButton = ({ email }: CopyEmailButtonProps) => {
+export const CopyEmailButton = ({ email, className }: CopyEmailButtonProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -26,6 +28,7 @@ export const CopyEmailButton = ({ email }: CopyEmailButtonProps) => {
       variant="ghost"
       size="sm"
       onClick={handleCopy}
+      className={cn(className)}
       aria-label={copied ? "Email copied" : "Copy email address"}
     >
       {copied ? "Copied" : "Copy email"}
