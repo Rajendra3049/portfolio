@@ -6,7 +6,7 @@ import { SectionShell } from "@/shared/ui/section-shell";
 
 export const EngineeringFocusSection = () => {
   return (
-    <SectionShell className="bg-zinc-900/70">
+    <SectionShell id="capabilities" className="bg-zinc-900/70">
       <SectionHeading
         eyebrow="Capabilities"
         title="What I bring to a product team."

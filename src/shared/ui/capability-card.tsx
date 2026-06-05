@@ -95,7 +95,7 @@ export const CapabilityCard = ({ capability }: CapabilityCardProps) => {
         ))}
       </ul>
 
-      <div className="mt-auto border-t border-zinc-800 pt-4">
+      <div className="mt-auto pt-4">
         <Link
           href={capability.proofHref}
           className="inline-flex items-start gap-1.5 text-sm leading-6 text-zinc-300 transition-colors hover:text-zinc-100"

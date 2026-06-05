@@ -23,6 +23,7 @@ export const siteConfig: SiteConfig = siteConfigSchema.parse({
   navItems: [
     { label: "Experience", href: "#experience" },
     { label: "Work", href: "#work" },
+    { label: "Capabilities", href: "#capabilities" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],

@@ -34,10 +34,16 @@ const resolveNavHref = (href: string, pathname: string) => {
 
 const getActiveSectionFromViewport = () => {
   const sections = getSectionsInDocumentOrder();
-  let activeSection = "";
+
+  if (sections.length === 0) {
+    return "";
+  }
+
+  const scrollPosition = window.scrollY + SCROLL_OFFSET + 4;
+  let activeSection = sections[0].id;
 
   for (const section of sections) {
-    if (section.getBoundingClientRect().top <= SCROLL_OFFSET) {
+    if (section.offsetTop <= scrollPosition) {
       activeSection = section.id;
     }
   }
@@ -47,20 +53,26 @@ const getActiveSectionFromViewport = () => {
 
 const isNavItemActive = (href: string, pathname: string, activeSection: string) => {
   if (href.startsWith("#")) {
-    const sectionId = href.slice(1);
-
-    if (pathname === "/") {
-      return activeSection === sectionId;
-    }
-
-    if (sectionId === "work" && pathname.startsWith("/work")) {
-      return true;
-    }
-
-    return false;
+    return href.slice(1) === activeSection;
   }
 
   return pathname === href;
+};
+
+const getNavActiveSection = (pathname: string, activeSection: string) => {
+  if (pathname === "/") {
+    return activeSection;
+  }
+
+  if (pathname.startsWith("/work")) {
+    if (activeSection && activeSection !== "work") {
+      return activeSection;
+    }
+
+    return "work";
+  }
+
+  return "";
 };
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -136,7 +148,9 @@ export const SiteNav = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    if (pathname !== "/") return;
+    if (pathname !== "/") {
+      return;
+    }
 
     let observer: IntersectionObserver | undefined;
     let setupFrameId = 0;
@@ -159,7 +173,9 @@ export const SiteNav = () => {
       const hash = window.location.hash.slice(1);
 
       if (hash && getSectionIds().includes(hash)) {
-        setActiveSection(hash);
+        window.requestAnimationFrame(() => {
+          setActiveSection(hash);
+        });
         return;
       }
 
@@ -225,13 +241,28 @@ export const SiteNav = () => {
   }, [isMenuOpen]);
 
   const handleNavClick = (href: string) => {
-    if (href.startsWith("#")) {
-      setActiveSection(href.slice(1));
+    if (!href.startsWith("#")) {
+      setIsMenuOpen(false);
+      return;
     }
+
+    const sectionId = href.slice(1);
+    setActiveSection(sectionId);
     setIsMenuOpen(false);
+
+    if (pathname !== "/") {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        setActiveSection(getActiveSectionFromViewport());
+      });
+    });
   };
 
   const isResumeActive = pathname === siteConfig.navCta.href;
+  const navActiveSection = getNavActiveSection(pathname, activeSection);
 
   return (
     <header
@@ -282,7 +313,7 @@ export const SiteNav = () => {
               href={item.href}
               label={item.label}
               pathname={pathname}
-              activeSection={activeSection}
+              activeSection={navActiveSection}
               onNavigate={() => handleNavClick(item.href)}
             />
           ))}
@@ -336,7 +367,7 @@ export const SiteNav = () => {
             <nav aria-label="Mobile navigation">
               <ul className="space-y-1">
                 {siteConfig.navItems.map((item) => {
-                  const isActive = isNavItemActive(item.href, pathname, activeSection);
+                  const isActive = isNavItemActive(item.href, pathname, navActiveSection);
                   const resolvedHref = resolveNavHref(item.href, pathname);
 
                   return (
