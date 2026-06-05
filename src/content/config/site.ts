@@ -3,11 +3,11 @@ import { siteConfigSchema, type SiteConfig } from "@/entities/site";
 export const siteConfig: SiteConfig = siteConfigSchema.parse({
   name: "Rajendra Patel",
   domain: "rajendrapatel.dev",
-  title: "Rajendra Patel | Frontend Engineer · SaaS & Real-Time Systems",
+  title: "Rajendra Patel | Software Engineer · React, Next.js, TypeScript · SaaS",
   description:
-    "Frontend engineer with ~3 years of experience building scalable SaaS applications for logistics and e-commerce. Specialized in React.js, Next.js, TypeScript, and real-time systems at Omniful.",
+    "Software Engineer with production SaaS experience at Omniful.ai. Strong frontend expertise in React, Next.js, and TypeScript. Built OMS, sales channel, and shipment systems for 100+ enterprise tenants. 30% load-time improvement, real-time systems, and intern-to-team-lead growth.",
   tagline:
-    "From intern to team lead in 2 years — frontend systems for high-volume logistics SaaS.",
+    "Software Engineer with strong frontend expertise — shipping scalable SaaS systems in production.",
   primaryCta: {
     label: "View Work",
     href: "#work",
@@ -18,7 +18,7 @@ export const siteConfig: SiteConfig = siteConfigSchema.parse({
   },
   navBrand: {
     monogram: "RP",
-    tagline: "Frontend · SaaS",
+    tagline: "Software · SaaS",
   },
   navItems: [
     { label: "Experience", href: "#experience" },

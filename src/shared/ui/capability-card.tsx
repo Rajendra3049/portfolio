@@ -44,13 +44,13 @@ const CapabilityIcon = ({
   const iconProps = { className: cn("size-4 shrink-0", className), "aria-hidden": true as const };
 
   switch (title) {
-    case "Frontend Systems":
+    case "Application Engineering":
       return <Layers {...iconProps} />;
-    case "SaaS & Real-Time":
+    case "Real-Time Product Systems":
       return <Radio {...iconProps} />;
-    case "Styling & UI":
+    case "UI & Form Engineering":
       return <Palette {...iconProps} />;
-    case "Tooling & AI Workflow":
+    case "Engineering Tooling & AI Workflow":
       return <Sparkles {...iconProps} />;
     default:
       return <Layers {...iconProps} />;

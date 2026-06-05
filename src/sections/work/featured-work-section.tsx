@@ -10,7 +10,7 @@ export const FeaturedWorkSection = () => {
       <SectionHeading
         eyebrow="Featured Work"
         title="Products I shipped — not tutorials."
-        description="Case studies on real problems, technical decisions, and outcomes across SaaS productivity, personal finance, and real-time systems."
+        description="Case studies on real problems, engineering decisions, and shipped outcomes across SaaS productivity, personal finance, and real-time systems."
       />
 
       <div className="grid gap-4 md:grid-cols-2">

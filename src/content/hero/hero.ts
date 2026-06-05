@@ -1,10 +1,10 @@
 export const heroContent = {
-  badge: "Associate Team Lead · Logistics SaaS",
-  headline: "From intern to team lead in 2 years.",
+  badge: "Software Engineer · Logistics SaaS",
+  headline: "Building production web systems for order management, sales channels, and shipment workflows.",
   subheadline:
-    "Leading frontend systems for order management, sales channels, and shipment workflows at Omniful.ai — 100+ enterprise tenants, 52K+ daily orders, and a 30% load-time improvement.",
-  focusPills: ["React.js", "Next.js", "TypeScript"],
-  scrollCue: "Scroll to explore experience, case studies, and capabilities",
+    "Associate Team Lead at Omniful.ai — I design and ship scalable software for 100+ enterprise tenants processing 52K+ orders per day. Strong in React, Next.js, and TypeScript, with a track record in performance optimization, real-time systems, and feature ownership.",
+  focusPills: ["React.js", "Next.js", "TypeScript", "Real-Time Systems", "SaaS"],
+  scrollCue: "Scroll to explore experience, projects, and capabilities",
   primaryCta: {
     label: "View Work",
     href: "#work",
@@ -17,7 +17,7 @@ export const heroContent = {
     label: "Resume",
     href: "/resume",
   },
-  openTo: "Frontend / SDE roles · Gurugram · Remote/Hybrid",
+  openTo: "Software Engineer · Frontend Engineer · SDE — Gurugram · Remote/Hybrid",
   proofMetrics: [
     { label: "Tenure", value: "2+ yrs" },
     { label: "Load Time Cut", value: "30%" },

@@ -6,14 +6,14 @@ export const wingShooterProject: Project = projectSchema.parse({
   shortDescription:
     "Real-time browser shooting game with responsive controls, collision detection, and score-driven gameplay.",
   heroTagline:
-    "Shipped a playable real-time browser game under deadline — proving collision logic, game state, and team coordination in production.",
+    "Shipped a playable real-time browser game under deadline — proving collision logic, game state, and team coordination.",
   longDescription:
     "WingShooter is a collaborative browser game where players shoot targets, dodge threats, and chase high scores through fast-paced, real-time interaction loops.",
   problem:
     "Browser games must handle continuous input, collision detection, and score updates without frame drops or unpredictable state — especially when multiple systems update in parallel.",
   originStory:
-    "Built during an intensive team sprint at Masai School, WingShooter started as a construct-week challenge: clone real-time gameplay mechanics in the browser within days. The idea was to stress-test state management, event-driven updates, and performance under tight timelines — skills that translate directly to real-time product UIs.",
-  role: "Frontend engineer — gameplay mechanics, state, and UI (team of 4)",
+    "Built during an intensive team sprint at Masai School, WingShooter started as a construct-week challenge: clone real-time gameplay mechanics in the browser within days. The goal was to stress-test state management, event-driven updates, and performance under tight timelines — skills that translate directly to real-time product UIs.",
+  role: "Software engineer — gameplay mechanics, state, and UI (team project)",
   timeline: "2022 · 5-day team sprint",
   caseStudy: {
     myRole: [
@@ -62,8 +62,8 @@ export const wingShooterProject: Project = projectSchema.parse({
   featured: false,
   categories: ["Real-Time Systems", "Game Dev", "Team Project"],
   metrics: [
-    { label: "Gameplay Systems", value: "5+" },
-    { label: "Team Size", value: "4" },
-    { label: "Sprint", value: "5 days" },
+    { label: "Status", value: "Live" },
+    { label: "Delivery", value: "Team sprint" },
+    { label: "Timeline", value: "5 days" },
   ],
 });

@@ -4,21 +4,21 @@ export const hisabDiaryProject: Project = projectSchema.parse({
   title: "Hisab Diary",
   slug: "hisab-diary",
   shortDescription:
-    "Modern personal finance platform for expense tracking, budgeting, analytics, and recurring transactions.",
+    "Personal finance platform for expense tracking, categorization, analytics, and reporting.",
   heroTagline:
-    "Built a fast expense diary with categorization and analytics — so spending patterns are visible at a glance, not buried in spreadsheets.",
+    "Built a live expense management product with categorization and analytics — fast capture and clear spending insights in one place.",
   longDescription:
-    "Hisab Diary is a full-stack expense management product for tracking spending, organizing categories, reviewing financial patterns, and managing budgets through a clean, mobile-friendly interface.",
+    "Hisab Diary is an expense management product for tracking spending, organizing categories, reviewing financial patterns, and reporting through a clean, mobile-friendly interface.",
   problem:
-    "Most expense apps force a trade-off: either too complex for quick daily entry, or too bare to surface meaningful spending insights. People need fast capture and clear analytics in one place.",
+    "People need fast expense capture and meaningful spending insights in one product — without the friction of spreadsheets or bare-bones trackers.",
   originStory:
-    "Growing up, 'hisab' (accounting) was how we tracked money informally — notebook entries and mental math. I wanted a digital version that respected that simplicity but added categorization, trends, and reporting so users could actually understand where their money goes.",
+    "Growing up, 'hisab' (accounting) was how we tracked money informally — notebook entries and mental math. I wanted a digital version that respected that simplicity but added categorization, trends, and reporting so users could understand where their money goes.",
   role: "Solo builder — product, frontend, backend, and deployment",
   timeline: "2024 · full-stack product build",
   caseStudy: {
     myRole: [
       "Designed and built the full expense tracking experience — entry, categories, analytics, and auth.",
-      "Implemented scalable state management and API integrations for user-specific financial data.",
+      "Implemented API integrations and optimized rendering for user-specific financial data.",
       "Owned responsive UI for fast mobile entry and desktop-friendly reporting views.",
     ],
     challenge: [
@@ -27,15 +27,14 @@ export const hisabDiaryProject: Project = projectSchema.parse({
       "Protecting user financial data with secure authentication and authorization patterns.",
     ],
     approach: [
-      "Structured Redux-style predictable state for expenses, categories, and filter views.",
-      "Built REST API consumption with optimized rendering for list-heavy transaction screens.",
-      "Migrated toward Next.js + Supabase + PostgreSQL for a modern, maintainable full-stack foundation.",
+      "Used TanStack Query for server-state and React Hook Form for validated expense entry flows.",
+      "Built on Next.js + Supabase with optimized rendering for list-heavy transaction screens.",
       "Prioritized mobile-first flows for daily capture, with analytics optimized for review sessions.",
     ],
     outcomes: [
       "Live expense management product with authentication, categorization, and reporting capabilities.",
       "Maintainable architecture ready for budgeting, recurring transactions, and deeper insights.",
-      "Open-source repo demonstrating full-stack ownership beyond frontend-only portfolio pieces.",
+      "Open-source repo demonstrating full product ownership beyond employer work.",
     ],
     differentiator: [
       "Finance UX rooted in real 'hisab' habits — fast entry first, insights second.",
@@ -48,8 +47,9 @@ export const hisabDiaryProject: Project = projectSchema.parse({
     "TypeScript",
     "Supabase",
     "PostgreSQL",
-    "Tailwind CSS",
     "TanStack Query",
+    "React Hook Form",
+    "Tailwind CSS",
   ],
   coverImage: "/work/hisab-diary-cover.png",
   screenshots: [
@@ -69,8 +69,8 @@ export const hisabDiaryProject: Project = projectSchema.parse({
   featured: true,
   categories: ["FinTech", "SaaS", "Full Stack"],
   metrics: [
-    { label: "Core Journeys", value: "5+" },
-    { label: "Analytics Views", value: "3+" },
+    { label: "Status", value: "Live" },
+    { label: "Build", value: "Solo" },
     { label: "Stack", value: "Next.js + Supabase" },
   ],
 });

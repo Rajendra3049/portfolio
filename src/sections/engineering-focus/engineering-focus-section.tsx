@@ -10,7 +10,7 @@ export const EngineeringFocusSection = () => {
       <SectionHeading
         eyebrow="Capabilities"
         title="What I bring to a product team."
-        description="Capabilities proven in production logistics SaaS and shipped side projects — not a laundry list of tutorials."
+        description="Skills proven in production logistics SaaS and shipped side projects — application engineering, real-time systems, and delivery tooling."
       />
 
       <div className="grid gap-4 md:grid-cols-2">

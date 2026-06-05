@@ -12,8 +12,8 @@ export type SkillCapability = {
 
 export const skillCapabilities: SkillCapability[] = [
   {
-    title: "Frontend Systems",
-    tagline: "Ship scalable product UIs that stay fast as complexity grows.",
+    title: "Application Engineering",
+    tagline: "Ship scalable web applications that stay fast as complexity grows.",
     skills: ["React", "Next.js", "TypeScript", "React Query", "Redux Toolkit"],
     proof: "30% load-time reduction across 15+ table-heavy OMS pages at Omniful.",
     proofHref: "#experience",
@@ -21,27 +21,27 @@ export const skillCapabilities: SkillCapability[] = [
     featured: true,
   },
   {
-    title: "SaaS & Real-Time",
-    tagline: "Build live operational systems with secure, multi-tenant product surfaces.",
-    skills: ["Pusher", "WebSockets", "CASL (RBAC)", "Sentry", "TanStack Query"],
+    title: "Real-Time Product Systems",
+    tagline: "Build live operational software with secure, multi-tenant behavior.",
+    skills: ["Pusher", "Beam", "WebSockets", "CASL (RBAC)", "Sentry"],
     proof: "Real-time order tracking and notifications for 100+ enterprise tenants.",
     proofHref: "#experience",
     accent: "emerald",
   },
   {
-    title: "Styling & UI",
-    tagline: "Polished, responsive interfaces that hold up on real production workflows.",
-    skills: ["Tailwind CSS", "Responsive Design", "React Hook Form", "SCSS"],
+    title: "UI & Form Engineering",
+    tagline: "Responsive, production-ready interfaces for workflow-heavy products.",
+    skills: ["Tailwind CSS", "Bootstrap", "React Hook Form", "Yup", "SCSS"],
     proof: "Production UIs shipped from intern onboarding through team lead at Omniful.",
     proofHref: "#experience",
     accent: "zinc",
   },
   {
-    title: "Tooling & AI Workflow",
-    tagline: "Accelerate delivery with modern tooling and AI-assisted engineering practices.",
-    skills: ["Cursor", "Git", "ESLint", "Supabase", "LLM-Assisted Code Review"],
+    title: "Engineering Tooling & AI Workflow",
+    tagline: "Improve team delivery with modern tooling and AI-assisted practices.",
+    skills: ["Cursor", "Git", "ESLint", "LLM-Assisted Code Review"],
     proof: "Cursor workflow adopted by the frontend team — ~50% faster feature scaffolding.",
-    proofHref: "/work/taskorbit",
+    proofHref: "#experience",
     accent: "amber",
   },
 ];

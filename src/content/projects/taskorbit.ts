@@ -4,22 +4,22 @@ export const taskorbitProject: Project = projectSchema.parse({
   title: "TaskOrbit",
   slug: "taskorbit",
   shortDescription:
-    "Personal productivity operating system for tasks, routines, planning, and work-life organization.",
+    "Productivity and task management platform for organizing, prioritizing, and tracking work.",
   heroTagline:
-    "Turned scattered daily work into one prioritized workspace — shipped live with auth, filtering, and scalable SaaS architecture.",
+    "Built a live task management product with auth, filtering, and scalable architecture — shipped solo from UI through deployment.",
   longDescription:
-    "TaskOrbit is a personal productivity OS that helps users manage tasks, routines, planning, and work-life organization through a modern, scalable workspace — not another static todo list.",
+    "TaskOrbit is a task management application for organizing, prioritizing, and tracking work through creation, editing, status management, due-date tracking, and filtering workflows.",
   problem:
-    "Knowledge workers lose time switching between notes, chats, and ad-hoc lists. Most task apps are either too lightweight (no structure) or too heavy (enterprise overhead) for daily personal productivity.",
+    "Users need a structured way to manage tasks, statuses, due dates, and filters without losing speed during daily use.",
   originStory:
-    "During busy development weeks at Omniful, I kept juggling deadlines across multiple tools. I wanted a single workspace that could handle prioritization, status tracking, and routines without the friction of enterprise software — so I designed TaskOrbit as a productivity system I would actually use every day.",
+    "During busy development weeks at Omniful, I kept juggling deadlines across multiple tools. I wanted a single workspace that could handle prioritization, status tracking, and routines — so I built TaskOrbit as a productivity system I would actually use every day.",
   role: "Solo builder — product, frontend, backend, and deployment",
   timeline: "2024 – 2025 · ongoing product build",
   caseStudy: {
     myRole: [
       "Owned end-to-end product design, UI implementation, API integrations, authentication, and production deployment.",
-      "Architected feature modules with reusable components, custom hooks, and predictable state management.",
-      "Iterated on workflow UX for task creation, editing, filtering, due dates, and status transitions.",
+      "Architected reusable components and custom hooks to reduce duplication and simplify feature development.",
+      "Built task creation, editing, status management, due-date tracking, and filtering workflows.",
     ],
     challenge: [
       "Keeping task-heavy screens responsive as data volume and filter combinations grew.",
@@ -29,7 +29,7 @@ export const taskorbitProject: Project = projectSchema.parse({
     approach: [
       "Built a feature-oriented frontend with shared UI primitives and hooks to avoid duplication across modules.",
       "Used TanStack Query for server-state caching and Zustand for lightweight client workflow state.",
-      "Deployed on a modern Next.js + Supabase stack with PostgreSQL for reliable, scalable data persistence.",
+      "Deployed on Next.js + Supabase with PostgreSQL for reliable, scalable data persistence.",
       "Designed mobile-first layouts so task entry and review stay fast on any device.",
     ],
     outcomes: [
@@ -38,8 +38,8 @@ export const taskorbitProject: Project = projectSchema.parse({
       "Open-source repository documenting architecture decisions for recruiters and collaborators.",
     ],
     differentiator: [
-      "Positioned as a productivity operating system — routines, planning, and organization — not a tutorial todo app.",
-      "Full-stack SaaS shipped solo with live URL and GitHub source, demonstrating ownership beyond UI exercises.",
+      "Full product ownership beyond employer work — authentication, APIs, performance, and responsive UI.",
+      "Solo-shipped SaaS with live URL and GitHub source, not a tutorial todo app.",
       "Modern stack (Next.js, TypeScript, Supabase, TanStack Query) aligned with current product engineering standards.",
     ],
   },
@@ -70,8 +70,8 @@ export const taskorbitProject: Project = projectSchema.parse({
   featured: true,
   categories: ["SaaS", "Productivity", "Full Stack"],
   metrics: [
-    { label: "Core Task Flows", value: "6+" },
-    { label: "Reusable Modules", value: "20+" },
+    { label: "Status", value: "Live" },
+    { label: "Build", value: "Solo" },
     { label: "Stack", value: "Next.js + Supabase" },
   ],
 });

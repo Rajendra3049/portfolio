@@ -5,7 +5,7 @@ export const omnifulExperience: Experience = experienceSchema.parse({
   company: "Omniful.ai",
   duration: "Sep 2023 – Present · Gurugram, India",
   summary:
-    "Joined as an intern and now lead frontend delivery across OMS, sales channels, and shipment systems.",
+    "Supply chain and logistics SaaS — joined as an intern, grew into full-time engineering, and now lead frontend delivery across OMS, sales channels, and shipment systems used by 100+ enterprise tenants processing 52K+ orders per day.",
   positions: [
     {
       role: "Associate Team Lead",
@@ -15,8 +15,8 @@ export const omnifulExperience: Experience = experienceSchema.parse({
       isCurrent: true,
       impactPoints: [
         "Lead frontend delivery across OMS, sales channel, and shipment modules.",
-        "Run sprint delivery, system design reviews, and code reviews with product, backend, and QA.",
-        "Mentor junior engineers and foster team growth through knowledge sharing.",
+        "Oversee feature planning, sprint delivery, system design reviews, and code reviews with product, backend, and QA.",
+        "Mentor junior engineers and foster team growth through knowledge sharing and engineering best practices.",
       ],
     },
     {
@@ -26,9 +26,12 @@ export const omnifulExperience: Experience = experienceSchema.parse({
       collapsedSummary: "30% load cut · OMS & real-time systems for 100+ tenants",
       impactPoints: [
         "Engineered Order Management, Sales Channel Services, and Shipment Creation systems for 100+ enterprise tenants.",
-        "Cut page load times by 30% with React Query caching and reduced code duplication by 40%.",
-        "Built a centralized sales-channel dashboard and real-time order tracking with live notifications.",
-        "Developed reusable components, custom hooks, and shared utilities across table-heavy product surfaces.",
+        "Cut page load times by 30% with React Query caching, route-level code splitting, and memoized list rendering across 15+ table-heavy pages.",
+        "Reduced code duplication by 40% through reusable components, custom hooks, and centralized utilities.",
+        "Built a centralized sales-channel dashboard unifying Shopify, Amazon, and other platforms for multi-platform order and inventory management.",
+        "Implemented real-time order tracking via Pusher and a real-time notification system using Beam.",
+        "Migrated shipment creation from a multi-screen manual flow to an automated pipeline, reducing per-shipment processing time from minutes to under 10 seconds.",
+        "Implemented route- and action-level RBAC with CASL ability mappings for safe multi-role tenant UI behavior.",
       ],
     },
     {
@@ -38,7 +41,7 @@ export const omnifulExperience: Experience = experienceSchema.parse({
       collapsedSummary: "Shipped production React UI in a fast-moving logistics SaaS team",
       isCompact: true,
       impactPoints: [
-        "Joined as an intern and shipped production React features in a fast-moving logistics SaaS team.",
+        "Shipped production React features in a fast-moving logistics SaaS environment.",
         "Built responsive UIs, reusable components, and form flows with React Hook Form and Redux Toolkit.",
         "Improved UI performance and contributed to clean code, Git, and Agile practices.",
       ],
@@ -54,10 +57,17 @@ export const omnifulExperience: Experience = experienceSchema.parse({
     "Bootstrap",
     "JavaScript",
     "SCSS",
+    "Pusher",
+    "Beam",
+    "CASL",
+    "Sentry",
+    "i18next",
+    "Axios",
   ],
   achievements: [
     "Grew from Software Engineer Intern to Associate Team Lead within two years.",
-    "Owned core OMS, sales channel, and shipment modules in a high-scale logistics SaaS platform.",
+    "Owned frontend for OMS, sales channel, and shipment modules used by 100+ enterprise tenants processing 52K+ orders per day.",
+    "Cut page load time by 30% and code duplication by 40% across production logistics SaaS surfaces.",
     "Built an AI-assisted Cursor workflow adopted by the frontend team, cutting feature scaffolding time by ~50%.",
   ],
   metrics: [
