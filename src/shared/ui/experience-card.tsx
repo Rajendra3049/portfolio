@@ -150,11 +150,13 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   const [showFullTimeline, setShowFullTimeline] = useState(false);
 
   const hasPositions = positions.length > 0;
-  const collapsedCount = positions.filter((position) => {
-    const key = getPositionKey(position);
-    const isExpanded = showFullTimeline || expandedKeys.has(key);
-    return !isExpanded || position.isCompact;
-  }).length;
+  const expandablePositions = positions.filter((position) => !position.isCompact);
+  const showTimelineToggle = positions.some(
+    (position) => !position.isCurrent && !position.isCompact,
+  );
+  const isTimelineFullyExpanded = expandablePositions.every(
+    (position) => showFullTimeline || expandedKeys.has(getPositionKey(position)),
+  );
 
   const handleTogglePosition = (position: ExperiencePosition) => {
     const key = getPositionKey(position);
@@ -173,14 +175,15 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
     setShowFullTimeline(false);
   };
 
-  const handleExpandAll = () => {
+  const handleToggleFullTimeline = () => {
+    if (isTimelineFullyExpanded) {
+      setShowFullTimeline(false);
+      setExpandedKeys(defaultExpandedKeys);
+      return;
+    }
+
     setShowFullTimeline(true);
     setExpandedKeys(new Set(positions.map((position) => getPositionKey(position))));
-  };
-
-  const handleCollapseAll = () => {
-    setShowFullTimeline(false);
-    setExpandedKeys(defaultExpandedKeys);
   };
 
   const isPositionExpanded = (position: ExperiencePosition) => {
@@ -210,23 +213,21 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
               Career timeline
             </p>
-            {collapsedCount > 0 ? (
+            {showTimelineToggle ? (
               <button
                 type="button"
-                onClick={handleExpandAll}
-                className="text-xs font-medium text-zinc-400 transition-colors hover:text-zinc-200"
+                onClick={handleToggleFullTimeline}
+                aria-expanded={isTimelineFullyExpanded}
+                className={roleToggleButtonClassName}
               >
-                View full timeline
+                {isTimelineFullyExpanded ? "Show current role only" : "View full timeline"}
+                {isTimelineFullyExpanded ? (
+                  <ChevronUp className="size-3.5" aria-hidden />
+                ) : (
+                  <ChevronDown className="size-3.5" aria-hidden />
+                )}
               </button>
-            ) : (
-              <button
-                type="button"
-                onClick={handleCollapseAll}
-                className="text-xs font-medium text-zinc-400 transition-colors hover:text-zinc-200"
-              >
-                Show current role only
-              </button>
-            )}
+            ) : null}
           </div>
 
           <ol className="relative border-l border-zinc-700">
