@@ -1,18 +1,45 @@
 export const skillCapabilities = [
   {
     title: "Frontend Systems",
-    skills: ["React", "Next.js", "TypeScript", "Design Systems", "Tailwind CSS"],
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "React Query",
+      "Redux Toolkit",
+      "React Hook Form",
+    ],
   },
   {
-    title: "Backend / Full Stack",
-    skills: ["Node.js", "API Design", "PostgreSQL", "Authentication", "Caching"],
+    title: "SaaS & Real-Time",
+    skills: [
+      "WebSockets",
+      "Pusher",
+      "Beam",
+      "CASL (RBAC)",
+      "i18next",
+      "Sentry",
+    ],
   },
   {
-    title: "Realtime Infrastructure",
-    skills: ["WebSockets", "Realtime Data Sync", "Event Flows", "Pub/Sub Patterns"],
+    title: "Styling & UI",
+    skills: [
+      "Tailwind CSS",
+      "Bootstrap",
+      "SCSS",
+      "CSS Modules",
+      "Responsive Design",
+    ],
   },
   {
-    title: "Tooling & Architecture",
-    skills: ["Monorepos", "CI/CD", "Testing Strategy", "Observability", "Performance"],
+    title: "Tooling & AI Workflow",
+    skills: [
+      "Vite",
+      "Webpack",
+      "ESLint",
+      "Git",
+      "Cursor",
+      "LLM-Assisted Code Review",
+    ],
   },
 ] as const;

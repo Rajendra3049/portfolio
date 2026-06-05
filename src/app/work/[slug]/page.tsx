@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, projects } from "@/content";
 import { siteConfig } from "@/content/config/site";
+import { getLinkTargetProps } from "@/shared/lib/link";
 import { Pill } from "@/shared/ui/pill";
 import { SectionShell } from "@/shared/ui/section-shell";
 
@@ -115,12 +116,14 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href={project.liveUrl}
+            {...getLinkTargetProps(project.liveUrl)}
             className="rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
           >
             Live Product
           </Link>
           <Link
             href={project.githubUrl}
+            {...getLinkTargetProps(project.githubUrl)}
             className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
           >
             Source Code

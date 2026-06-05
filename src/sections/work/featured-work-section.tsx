@@ -11,8 +11,8 @@ export const FeaturedWorkSection = () => {
     <SectionShell id="work" className="bg-zinc-950/90">
       <SectionHeading
         eyebrow="Featured Work"
-        title="Projects that show architecture depth and product thinking."
-        description="Each case highlights engineering trade-offs, scalability decisions, and outcomes beyond feature delivery."
+        title="Selected projects from production and personal builds."
+        description="Case studies spanning SaaS productivity, finance tracking, and real-time interactive systems."
       />
 
       <div className="grid gap-4 md:grid-cols-2">

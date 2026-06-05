@@ -15,20 +15,20 @@ export const HeroSection = () => {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start lg:gap-10">
         <FadeIn className="max-w-4xl">
           <p className="inline-flex rounded-full border border-zinc-700/90 bg-zinc-900/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-300">
-            Product-Focused Software Engineer
+            Frontend Engineer · SaaS & Real-Time Systems
           </p>
           <h1 className="mt-5 text-3xl font-semibold leading-tight tracking-tight text-zinc-50 sm:text-5xl">
-            Building scalable SaaS applications and production-grade frontend architecture.
+            {siteConfig.tagline}
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-300 sm:text-lg">
-            I ship high-ownership product systems with React.js, Next.js, and TypeScript,
-            focused on real-time workflows, maintainable architecture, and measurable product
-            impact.
+            Software development engineer at Omniful.ai building order management, sales
+            channel, and shipment systems for 100+ enterprise tenants — with measurable
+            gains in performance, reusability, and real-time user experience.
           </p>
           <div className="mt-6 flex flex-wrap gap-2" aria-label="Core capability areas">
-            <Pill>Frontend Engineer</Pill>
-            <Pill>Real-Time Systems</Pill>
-            <Pill>Scalable SaaS Applications</Pill>
+            <Pill>React.js</Pill>
+            <Pill>Next.js</Pill>
+            <Pill>TypeScript</Pill>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild>
@@ -59,7 +59,7 @@ export const HeroSection = () => {
             <div>
               <p className="text-xs uppercase tracking-wide text-zinc-500">Featured Work</p>
               <p className="mt-1 text-sm font-medium text-zinc-100">
-                {featuredProjects.length}+ architecture-led case studies
+                {featuredProjects.map((project) => project.title).join(", ")}
               </p>
             </div>
             <div>
@@ -70,7 +70,7 @@ export const HeroSection = () => {
           <div className="mt-5 border-t border-zinc-800 pt-4">
             <p className="text-xs uppercase tracking-wide text-zinc-500">Open To</p>
             <p className="mt-1 text-sm text-zinc-200">
-              Product engineering and frontend architecture roles.
+              Frontend engineering and SaaS product roles.
             </p>
           </div>
         </FadeIn>

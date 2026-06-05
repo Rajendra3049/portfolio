@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/content/config/site";
+import { getLinkTargetProps } from "@/shared/lib/link";
 import { cn } from "@/shared/lib/utils";
 
 const SCROLL_OFFSET = 96;
@@ -161,6 +162,7 @@ export const SiteNav = () => {
                 <li key={item.label}>
                   <Link
                     href={resolvedHref}
+                    {...getLinkTargetProps(item.href)}
                     onClick={() => handleNavClick(item.href)}
                     aria-current={isActive ? "page" : undefined}
                     className={cn(

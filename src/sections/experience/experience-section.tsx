@@ -9,8 +9,8 @@ export const ExperienceSection = () => {
     <SectionShell id="experience" className="bg-zinc-900/70">
       <SectionHeading
         eyebrow="Experience"
-        title="Engineering impact in real product environments."
-        description="Focused on frontend ownership, scalable architecture decisions, and operational workflow improvements."
+        title="Production impact at Omniful.ai."
+        description="Frontend ownership across OMS, sales channels, and shipment systems — from performance optimization to real-time workflows and team leadership."
       />
       <div className="space-y-4">
         {experiences.map((experience, index) => (

@@ -3,11 +3,11 @@ import { siteConfigSchema, type SiteConfig } from "@/entities/site";
 export const siteConfig: SiteConfig = siteConfigSchema.parse({
   name: "Rajendra Patel",
   domain: "rajendrapatel.dev",
-  title: "Rajendra Patel | Product-Focused Software Engineer",
+  title: "Rajendra Patel | Frontend Engineer · SaaS & Real-Time Systems",
   description:
-    "Product-focused software engineer building scalable SaaS applications, real-time systems, and modern frontend architecture with React, Next.js, and TypeScript.",
+    "Frontend engineer with ~3 years of experience building scalable SaaS applications for logistics and e-commerce. Specialized in React.js, Next.js, TypeScript, and real-time systems at Omniful.",
   tagline:
-    "Building scalable SaaS systems and production-grade frontend architecture.",
+    "Building scalable SaaS applications and real-time frontend systems for high-volume operations.",
   primaryCta: {
     label: "View Work",
     href: "#work",
@@ -24,8 +24,11 @@ export const siteConfig: SiteConfig = siteConfigSchema.parse({
     { label: "Resume", href: "/resume" },
   ],
   socialLinks: [
-    { label: "GitHub", href: "https://github.com/rajendrapatel" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/rajendrapatel" },
-    { label: "Email", href: "mailto:rajendra@example.com" },
+    { label: "GitHub", href: "https://github.com/Rajendra3049" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/rajendra-patel-308237238/",
+    },
+    { label: "Email", href: "mailto:rajendrapatel0430@gmail.com" },
   ],
 });

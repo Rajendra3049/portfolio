@@ -2,13 +2,13 @@ import { type Experience } from "@/entities/experience";
 import { type Project } from "@/entities/project";
 import { omnifulExperience } from "@/content/experience/omniful";
 import { hisabDiaryProject } from "@/content/projects/hisab-diary";
-import { musicPlatformProject } from "@/content/projects/music-platform";
 import { taskorbitProject } from "@/content/projects/taskorbit";
+import { wingShooterProject } from "@/content/projects/wingshooter";
 
 export const projects: Project[] = [
   taskorbitProject,
   hisabDiaryProject,
-  musicPlatformProject,
+  wingShooterProject,
 ];
 
 export const experiences: Experience[] = [omnifulExperience];
