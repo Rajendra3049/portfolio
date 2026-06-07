@@ -73,6 +73,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
             slug={project.slug}
             title={project.title}
             category={project.categories[0]}
+            coverImage={project.coverImage}
             variant="hero"
           />
         </div>
@@ -170,7 +171,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
           </CaseStudySection>
 
           <CaseStudySection eyebrow="08 — Gallery" title="Product screens">
-            <ScreenshotGallery screenshots={project.screenshots} slug={project.slug} />
+            <ScreenshotGallery screenshots={project.screenshots} />
           </CaseStudySection>
         </div>
 
