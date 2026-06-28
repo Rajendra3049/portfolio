@@ -27,6 +27,12 @@ const coverThemes: Record<string, CoverTheme> = {
     label: "WingShooter",
     subtitle: "Real-Time Shooting Game",
   },
+  lint: {
+    gradient: "from-fuchsia-950 via-rose-900 to-zinc-950",
+    accent: "bg-rose-400/80",
+    label: "Lint",
+    subtitle: "E-commerce Platform",
+  },
 };
 
 const defaultTheme: CoverTheme = {
