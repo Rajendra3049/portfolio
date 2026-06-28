@@ -3,12 +3,15 @@ import { z } from "zod";
 export const experiencePositionSchema = z.object({
   role: z.string().min(1),
   duration: z.string().min(1),
+  headline: z.string().min(1).optional(),
+  summary: z.string().min(1).optional(),
   scope: z.string().min(1).optional(),
   collapsedSummary: z.string().min(1).optional(),
+  tools: z.array(z.string().min(1)).max(5).optional(),
   isPromotion: z.boolean().optional(),
   isCurrent: z.boolean().optional(),
   isCompact: z.boolean().optional(),
-  impactPoints: z.array(z.string().min(1)).min(1),
+  impactPoints: z.array(z.string().min(1)).min(1).max(4),
 });
 
 export const experienceSchema = z

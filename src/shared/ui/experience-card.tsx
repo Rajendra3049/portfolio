@@ -1,266 +1,276 @@
 "use client";
 
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { useMemo, useState } from "react";
-import { type Experience, type ExperiencePosition } from "@/entities/experience";
-import { cn } from "@/shared/lib/utils";
+import {
+  type Experience,
+  type ExperiencePosition,
+} from "@/entities/experience";
 import { Pill } from "@/shared/ui/pill";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useRef, useState } from "react";
 
 type ExperienceCardProps = {
-  experience: Experience;
+  experiences: Experience[];
 };
 
-const getPositionKey = (position: ExperiencePosition) =>
-  `${position.role}-${position.duration}`;
-
-const roleToggleButtonClassName =
-  "inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-zinc-600 px-2.5 py-1 text-xs font-medium text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400";
-
-const roleToggleButtonGroupClassName =
-  "inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-zinc-600 px-2.5 py-1 text-xs font-medium text-zinc-300 transition-colors group-hover:bg-zinc-800 group-hover:text-zinc-100";
+type FlattenedRole = ExperiencePosition & {
+  id: string;
+  company: string;
+  companySummary: string;
+  companyDuration: string;
+  roleSummary: string;
+};
 
 const ImpactPointList = ({ points }: { points: string[] }) => (
-  <ul className="space-y-1.5 text-sm leading-6 text-zinc-300">
+  <ul className="space-y-2 text-sm leading-6 text-zinc-300">
     {points.map((point) => (
       <li key={point} className="flex gap-2">
-        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-zinc-500" aria-hidden />
+        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emerald-500/80" aria-hidden />
         <span>{point}</span>
       </li>
     ))}
   </ul>
 );
 
-const InlineMetrics = ({ experience }: { experience: Experience }) => (
-  <ul className="mt-3 flex flex-wrap gap-2" aria-label="Key metrics">
-    {experience.metrics.map((metric) => (
-      <li key={metric.label}>
-        <Pill className="px-3 py-1.5 text-xs font-medium text-zinc-300">
-          {metric.value} {metric.label.toLowerCase()}
-        </Pill>
-      </li>
-    ))}
-  </ul>
-);
-
-type TimelineNodeProps = {
+type RoleRailItemProps = {
   position: ExperiencePosition;
-  isLast: boolean;
-  isExpanded: boolean;
-  onToggle: () => void;
+  company: string;
+  isActive: boolean;
+  onSelect: () => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+  itemRef: (node: HTMLButtonElement | null) => void;
 };
 
-const TimelineNode = ({
+const RoleRailItem = ({
   position,
-  isLast,
-  isExpanded,
-  onToggle,
-}: TimelineNodeProps) => {
-  const isHighlighted = position.isCurrent || position.isPromotion;
-  const summary =
-    position.collapsedSummary ?? position.impactPoints[0] ?? position.scope ?? "";
-  const canExpand = !position.isCompact && position.impactPoints.length > 0;
+  company,
+  isActive,
+  onSelect,
+  onKeyDown,
+  itemRef,
+}: RoleRailItemProps) => {
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <li className={cn("relative pl-7", isLast ? "pb-0" : "pb-4")}>
-      <span
-        className={cn(
-          "absolute left-0 top-1.5 size-2.5 -translate-x-1/2 rounded-full ring-4 ring-zinc-900/90",
-          isHighlighted ? "bg-emerald-500" : "bg-zinc-500",
-        )}
-        aria-hidden
-      />
-
-      {isExpanded && canExpand ? (
-        <div>
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-            <div className="flex flex-wrap items-center gap-2">
-              <h4 className="text-sm font-semibold text-zinc-50">{position.role}</h4>
-              {position.isPromotion ? (
-                <Pill className="border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
-                  Promotion
-                </Pill>
-              ) : null}
-              {position.scope ? (
-                <span className="text-xs text-zinc-500">· {position.scope}</span>
-              ) : null}
-            </div>
-            <p className="shrink-0 text-xs text-zinc-500">{position.duration}</p>
-          </div>
-
-          <div className="mt-2">
-            <ImpactPointList points={position.impactPoints} />
-          </div>
-
-          {!position.isCurrent ? (
-            <button
-              type="button"
-              onClick={onToggle}
-              aria-expanded
-              className={cn("mt-3", roleToggleButtonClassName)}
-            >
-              Collapse role
-              <ChevronUp className="size-3.5" aria-hidden />
-            </button>
-          ) : null}
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={canExpand ? onToggle : undefined}
-          disabled={!canExpand}
-          aria-expanded={false}
-          className={cn(
-            "group w-full text-left",
-            canExpand && "cursor-pointer rounded-lg transition-colors",
-            !canExpand && "cursor-default",
-          )}
-        >
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-sm font-medium text-zinc-200">{position.role}</p>
-              <p className="mt-0.5 text-xs leading-5 text-zinc-500">{summary}</p>
-            </div>
-            <p className="shrink-0 text-xs text-zinc-500">{position.duration}</p>
-          </div>
-          {canExpand ? (
-            <span className={cn("mt-3", roleToggleButtonGroupClassName)}>
-              Expand role
-              <ChevronDown className="size-3.5" aria-hidden />
-            </span>
-          ) : null}
-        </button>
-      )}
-    </li>
+    <motion.button
+      ref={itemRef}
+      type="button"
+      onClick={onSelect}
+      onKeyDown={onKeyDown}
+      aria-pressed={isActive}
+      aria-label={`${position.role} at ${company}, ${position.duration}`}
+      animate={
+        shouldReduceMotion
+          ? undefined
+          : isActive
+            ? { scale: 1.01, boxShadow: "0 0 0 1px rgba(16,185,129,0.35)" }
+            : { scale: 1, boxShadow: "0 0 0 0px rgba(16,185,129,0)" }
+      }
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className={`relative z-10 w-full cursor-pointer rounded-lg border px-3 py-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
+        isActive
+          ? "border-emerald-500/50 bg-emerald-500/10 text-zinc-100"
+          : "border-zinc-800 bg-zinc-950/40 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-900/80"
+      }`}
+    >
+      <div className="flex flex-col gap-1.5">
+        <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">{position.duration}</p>
+        <p className="text-[15px] font-semibold leading-tight">{position.role}</p>
+        <p className="text-sm leading-tight text-zinc-400">{company}</p>
+      </div>
+    </motion.button>
   );
 };
 
-export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
-  const positions = experience.positions ?? [];
-  const defaultExpandedKeys = useMemo(
-    () =>
-      new Set(
-        (experience.positions ?? [])
-          .filter((position) => position.isCurrent)
-          .map((position) => getPositionKey(position)),
-      ),
-    [experience.positions],
+const getDurationParts = (duration: string) => {
+  const [, location] = duration.split("·").map((part) => part.trim());
+  return { location };
+};
+
+const flattenExperiences = (experiences: Experience[]): FlattenedRole[] =>
+  experiences.flatMap((experience) =>
+    (experience.positions ?? []).map((position) => ({
+      ...position,
+      id: `${experience.company}-${position.role}-${position.duration}`,
+      company: experience.company,
+      companySummary: experience.summary,
+      companyDuration: experience.duration,
+      roleSummary: position.summary ?? experience.summary,
+    })),
   );
 
-  const [expandedKeys, setExpandedKeys] = useState<Set<string>>(defaultExpandedKeys);
-  const [showFullTimeline, setShowFullTimeline] = useState(false);
+export const ExperienceCard = ({ experiences }: ExperienceCardProps) => {
+  const shouldReduceMotion = useReducedMotion();
+  const roleRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const hasPositions = positions.length > 0;
-  const expandablePositions = positions.filter((position) => !position.isCompact);
-  const showTimelineToggle = positions.some(
-    (position) => !position.isCurrent && !position.isCompact,
-  );
-  const isTimelineFullyExpanded = expandablePositions.every(
-    (position) => showFullTimeline || expandedKeys.has(getPositionKey(position)),
+  const roles = flattenExperiences(experiences);
+  const initialRoleIndex = roles.findIndex((role) => role.isCurrent);
+  const [selectedRoleIndex, setSelectedRoleIndex] = useState(() =>
+    initialRoleIndex >= 0 ? initialRoleIndex : 0,
   );
 
-  const handleTogglePosition = (position: ExperiencePosition) => {
-    const key = getPositionKey(position);
+  const selectedRole = roles[selectedRoleIndex];
+  const showCompanyGroups = experiences.length > 1;
+  const selectedLocation = selectedRole
+    ? getDurationParts(selectedRole.companyDuration).location
+    : undefined;
 
-    setExpandedKeys((current) => {
-      const next = new Set(current);
-
-      if (next.has(key)) {
-        next.delete(key);
-      } else {
-        next.add(key);
+  const handleRoleKeyDown =
+    (index: number) => (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") {
+        return;
       }
 
-      return next;
-    });
-    setShowFullTimeline(false);
-  };
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      const nextIndex = (index + direction + roles.length) % roles.length;
+      setSelectedRoleIndex(nextIndex);
+      roleRefs.current[nextIndex]?.focus();
+    };
 
-  const handleToggleFullTimeline = () => {
-    if (isTimelineFullyExpanded) {
-      setShowFullTimeline(false);
-      setExpandedKeys(defaultExpandedKeys);
-      return;
+  const detailTransition = shouldReduceMotion
+    ? { duration: 0.15, ease: "easeOut" as const }
+    : { duration: 0.28, ease: "easeOut" as const };
+
+  const detailInitial = shouldReduceMotion
+    ? { opacity: 0 }
+    : { opacity: 0, y: 10, scale: 0.995 };
+
+  const detailAnimate = shouldReduceMotion
+    ? { opacity: 1 }
+    : { opacity: 1, y: 0, scale: 1 };
+
+  const detailExit = shouldReduceMotion
+    ? { opacity: 0 }
+    : { opacity: 0, y: -8, scale: 0.995 };
+
+  if (roles.length === 0) {
+    const fallbackExperience = experiences[0];
+    if (!fallbackExperience) {
+      return null;
     }
 
-    setShowFullTimeline(true);
-    setExpandedKeys(new Set(positions.map((position) => getPositionKey(position))));
-  };
-
-  const isPositionExpanded = (position: ExperiencePosition) => {
-    if (position.isCompact) {
-      return false;
-    }
-
-    return showFullTimeline || expandedKeys.has(getPositionKey(position));
-  };
+    return (
+      <article className="rounded-xl border border-zinc-800 bg-zinc-900/90 p-5 sm:p-6">
+        <ImpactPointList points={fallbackExperience.impactPoints ?? []} />
+      </article>
+    );
+  }
 
   return (
     <article className="rounded-xl border border-zinc-800 bg-zinc-900/90 p-5 sm:p-6">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h3 className="break-words text-lg font-semibold text-zinc-50">{experience.company}</h3>
-          <p className="mt-1 text-sm text-zinc-400">{experience.duration}</p>
-        </div>
-        <p className="break-words text-sm font-medium text-zinc-300">{experience.role}</p>
-      </div>
+      <div className="grid gap-4 lg:grid-cols-[300px_minmax(0,1fr)]">
+        <aside className="min-w-0">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">
+            Timeline
+          </p>
+          <div className="space-y-4">
+            {experiences.map((experience) => {
+              const companyRoles = roles.filter((role) => role.company === experience.company);
+              if (companyRoles.length === 0) {
+                return null;
+              }
 
-      <p className="mt-3 text-sm leading-6 text-zinc-300">{experience.summary}</p>
-      <InlineMetrics experience={experience} />
+              return (
+                <div key={experience.company}>
+                  {showCompanyGroups ? (
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                      {experience.company}
+                    </p>
+                  ) : null}
+                  <ol className="relative flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
+                    <span
+                      className="pointer-events-none absolute bottom-3 left-[11px] top-3 hidden w-px bg-linear-to-b from-zinc-700 via-zinc-800 to-zinc-700 lg:block"
+                      aria-hidden
+                    />
+                    {companyRoles.map((role) => {
+                      const currentIndex = roles.findIndex((item) => item.id === role.id);
+                      const isActive = currentIndex === selectedRoleIndex;
 
-      {hasPositions ? (
-        <div className="mt-6">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-              Career timeline
-            </p>
-            {showTimelineToggle ? (
-              <button
-                type="button"
-                onClick={handleToggleFullTimeline}
-                aria-expanded={isTimelineFullyExpanded}
-                className={roleToggleButtonClassName}
-              >
-                {isTimelineFullyExpanded ? "Show current role only" : "View full timeline"}
-                {isTimelineFullyExpanded ? (
-                  <ChevronUp className="size-3.5" aria-hidden />
-                ) : (
-                  <ChevronDown className="size-3.5" aria-hidden />
-                )}
-              </button>
-            ) : null}
+                      return (
+                        <li
+                          key={role.id}
+                          className="relative min-w-[220px] lg:min-w-0 lg:pl-6"
+                        >
+                          <span
+                            className={`absolute left-[7px] top-1/2 z-20 hidden size-2.5 -translate-y-1/2 rounded-full border-2 lg:block ${
+                              isActive
+                                ? "border-emerald-400 bg-emerald-400"
+                                : "border-zinc-600 bg-zinc-900"
+                            }`}
+                            aria-hidden
+                          />
+                          <RoleRailItem
+                            position={role}
+                            company={experience.company}
+                            isActive={isActive}
+                            onSelect={() => setSelectedRoleIndex(currentIndex)}
+                            onKeyDown={handleRoleKeyDown(currentIndex)}
+                            itemRef={(node) => {
+                              roleRefs.current[currentIndex] = node;
+                            }}
+                          />
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
+              );
+            })}
           </div>
+        </aside>
 
-          <ol className="relative border-l border-zinc-700">
-            {positions.map((position, index) => (
-              <TimelineNode
-                key={getPositionKey(position)}
-                position={position}
-                isLast={index === positions.length - 1}
-                isExpanded={isPositionExpanded(position)}
-                onToggle={() => handleTogglePosition(position)}
-              />
-            ))}
-          </ol>
-        </div>
-      ) : (
-        <div className="mt-5">
-          <ImpactPointList points={experience.impactPoints ?? []} />
-        </div>
-      )}
+        <AnimatePresence mode="wait" initial={false}>
+          {selectedRole ? (
+            <motion.section
+              key={selectedRole.id}
+              className="min-w-0 rounded-xl border border-zinc-800 bg-zinc-950/45 p-4 sm:p-5"
+              initial={detailInitial}
+              animate={detailAnimate}
+              exit={detailExit}
+              transition={detailTransition}
+            >
+              <header className="border-b border-zinc-800 pb-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h4 className="text-base font-semibold text-zinc-50 sm:text-lg">
+                    {selectedRole.role}
+                  </h4>
+                  {selectedRole.isCurrent ? (
+                    <Pill className="border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
+                      Current
+                    </Pill>
+                  ) : null}
+                  {selectedRole.isPromotion ? (
+                    <Pill className="border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
+                      Promotion
+                    </Pill>
+                  ) : null}
+                </div>
+                <p className="mt-1 text-sm text-zinc-500">
+                  {selectedRole.duration} · {selectedRole.company}
+                  {selectedLocation ? ` · ${selectedLocation}` : ""}
+                </p>
+                <p className="mt-2 text-sm text-zinc-300">{selectedRole.roleSummary}</p>
+                {selectedRole.headline ? (
+                  <p className="mt-2 text-sm font-medium text-emerald-200/90">
+                    {selectedRole.headline}
+                  </p>
+                ) : selectedRole.scope ? (
+                  <p className="mt-2 text-xs uppercase tracking-wide text-zinc-500">
+                    Responsibility Area · {selectedRole.scope}
+                  </p>
+                ) : null}
+              </header>
 
-      <ul className="mt-6 space-y-2 border-t border-zinc-800 pt-5">
-        {experience.achievements.map((achievement) => (
-          <li key={achievement} className="flex gap-2 text-sm text-zinc-400">
-            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emerald-500/70" aria-hidden />
-            <span>{achievement}</span>
-          </li>
-        ))}
-      </ul>
-
-      <p className="mt-5 wrap-break-word text-xs leading-6 text-zinc-500">
-        <span className="font-semibold uppercase tracking-wide text-zinc-400">Stack · </span>
-        {experience.stack.join(" · ")}
-      </p>
+              <div className="mt-4">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+                  Responsibilities
+                </p>
+                <ImpactPointList points={selectedRole.impactPoints} />
+              </div>
+            </motion.section>
+          ) : null}
+        </AnimatePresence>
+      </div>
     </article>
   );
 };
