@@ -13,7 +13,7 @@ export const FeaturedWorkSection = () => {
         description="Case studies on real problems, engineering decisions, and shipped outcomes across SaaS productivity, personal finance, and real-time systems."
       />
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2">
         {projects.map((project, index) => (
           <FadeIn key={project.slug} delay={index * 0.08}>
             <ProjectCard project={project} />

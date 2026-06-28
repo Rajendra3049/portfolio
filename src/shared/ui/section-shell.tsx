@@ -11,7 +11,7 @@ export const SectionShell = ({ id, children, className }: SectionShellProps) => 
     <section
       id={id}
       className={cn(
-        "scroll-mt-24 border-y border-zinc-800/70 bg-zinc-900/70 py-14 sm:py-20",
+        "scroll-mt-24 border-y border-zinc-800/70 bg-zinc-900/70 py-12 sm:py-16 lg:py-20",
         className,
       )}
     >

@@ -111,7 +111,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
             ))}
           </div>
 
-          <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <dl className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:grid-cols-3">
             {project.metrics.map((metric) => (
               <div
                 key={metric.label}
@@ -123,18 +123,18 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
             ))}
           </dl>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
             <Link
               href={project.liveUrl}
               {...getLinkTargetProps(project.liveUrl)}
-              className="rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
+              className="inline-flex w-full items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 min-[420px]:w-auto"
             >
               Live Product
             </Link>
             <Link
               href={project.githubUrl}
               {...getLinkTargetProps(project.githubUrl)}
-              className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+              className="inline-flex w-full items-center justify-center rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800 min-[420px]:w-auto"
             >
               Source Code
             </Link>
@@ -175,24 +175,24 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
           </CaseStudySection>
         </div>
 
-        <footer className="mt-12 flex flex-wrap gap-3 border-t border-zinc-800 pt-8">
+        <footer className="mt-12 flex flex-col gap-3 border-t border-zinc-800 pt-8 min-[420px]:flex-row min-[420px]:flex-wrap">
           <Link
             href={project.liveUrl}
             {...getLinkTargetProps(project.liveUrl)}
-            className="rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
+            className="inline-flex w-full items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 min-[420px]:w-auto"
           >
             Live Product
           </Link>
           <Link
             href={project.githubUrl}
             {...getLinkTargetProps(project.githubUrl)}
-            className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+            className="inline-flex w-full items-center justify-center rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800 min-[420px]:w-auto"
           >
             Source Code
           </Link>
           <Link
             href="/#work"
-            className="rounded-md border border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-400 transition hover:bg-zinc-900 hover:text-zinc-200"
+            className="inline-flex w-full items-center justify-center rounded-md border border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-400 transition hover:bg-zinc-900 hover:text-zinc-200 min-[420px]:w-auto"
           >
             All projects
           </Link>

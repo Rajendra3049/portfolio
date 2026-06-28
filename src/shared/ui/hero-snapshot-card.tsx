@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Briefcase } from "lucide-react";
 import { type Project } from "@/entities/project";
+import { AnimatedCounter } from "@/shared/ui/animated-counter";
 
 type HeroSnapshotCardProps = {
   role: string;
@@ -8,6 +9,28 @@ type HeroSnapshotCardProps = {
   metrics: readonly { label: string; value: string }[];
   featuredProjects: Project[];
   openTo: string;
+};
+
+const splitMetricValue = (value: string) => {
+  const trimmed = value.trim();
+  const match = trimmed.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const [, prefix, numericPart, suffix] = match;
+  const parsed = Number(numericPart);
+
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+
+  return {
+    prefix,
+    value: Math.round(parsed),
+    suffix,
+  };
 };
 
 export const HeroSnapshotCard = ({
@@ -33,7 +56,7 @@ export const HeroSnapshotCard = ({
         </div>
       </div>
 
-      <dl className="mt-5 grid grid-cols-3 gap-2">
+      <dl className="mt-5 grid grid-cols-2 gap-2 min-[440px]:grid-cols-3">
         {metrics.map((metric) => (
           <div
             key={metric.label}
@@ -42,7 +65,23 @@ export const HeroSnapshotCard = ({
             <dt className="text-[10px] uppercase tracking-wide text-zinc-500 sm:text-xs">
               {metric.label}
             </dt>
-            <dd className="mt-1 text-sm font-medium text-zinc-100">{metric.value}</dd>
+            <dd className="mt-1 text-sm font-medium text-zinc-100">
+              {(() => {
+                const parsedMetric = splitMetricValue(metric.value);
+
+                if (!parsedMetric) {
+                  return metric.value;
+                }
+
+                return (
+                  <AnimatedCounter
+                    value={parsedMetric.value}
+                    prefix={parsedMetric.prefix}
+                    suffix={parsedMetric.suffix}
+                  />
+                );
+              })()}
+            </dd>
           </div>
         ))}
       </dl>

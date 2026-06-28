@@ -110,7 +110,7 @@ export const ContactEmailBlock = ({ email, bestFor }: ContactEmailBlockProps) =>
       <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <a
           href={`mailto:${email}`}
-          className="text-sm font-medium text-zinc-100 transition-colors hover:text-zinc-50"
+          className="break-all text-sm font-medium text-zinc-100 transition-colors hover:text-zinc-50"
         >
           {email}
         </a>
@@ -144,7 +144,7 @@ export const ContactGithubBlock = ({
         <Link
           href={href}
           {...getLinkTargetProps(href)}
-          className="text-sm font-medium text-zinc-100 transition-colors hover:text-zinc-50"
+          className="break-all text-sm font-medium text-zinc-100 transition-colors hover:text-zinc-50"
         >
           {handle}
         </Link>

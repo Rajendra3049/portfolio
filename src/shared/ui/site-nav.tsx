@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/content/config/site";
 import { getLinkTargetProps } from "@/shared/lib/link";
 import { cn } from "@/shared/lib/utils";
@@ -127,13 +127,9 @@ const NavLink = ({
       )}
     >
       <span className="flex items-center gap-2">
-        <span
-          className={cn(
-            "size-1.5 rounded-full transition-colors duration-200",
-            isActive ? "bg-emerald-400" : "bg-transparent",
-          )}
-          aria-hidden
-        />
+        {isActive ? (
+          <span className="size-1.5 rounded-full bg-emerald-400 transition-colors duration-200" aria-hidden />
+        ) : null}
         {label}
       </span>
     </Link>
@@ -146,6 +142,8 @@ export const SiteNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const pendingSectionRef = useRef<string | null>(null);
+  const pendingSectionTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -156,17 +154,27 @@ export const SiteNav = () => {
     let setupFrameId = 0;
     let scrollFrameId = 0;
 
-    const syncActiveSection = () => {
-      setActiveSection(getActiveSectionFromViewport());
-    };
-
     const syncScrollState = () => {
       const scrollTop = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const viewportSection = getActiveSectionFromViewport();
 
       setIsScrolled(scrollTop > 8);
       setScrollProgress(scrollHeight > 0 ? Math.min(100, (scrollTop / scrollHeight) * 100) : 0);
-      syncActiveSection();
+
+      if (pendingSectionRef.current) {
+        if (viewportSection === pendingSectionRef.current) {
+          pendingSectionRef.current = null;
+          if (pendingSectionTimeoutRef.current) {
+            window.clearTimeout(pendingSectionTimeoutRef.current);
+            pendingSectionTimeoutRef.current = null;
+          }
+          setActiveSection(viewportSection);
+        }
+        return;
+      }
+
+      setActiveSection(viewportSection);
     };
 
     const syncFromHash = () => {
@@ -224,6 +232,10 @@ export const SiteNav = () => {
     return () => {
       window.cancelAnimationFrame(setupFrameId);
       window.cancelAnimationFrame(scrollFrameId);
+      if (pendingSectionTimeoutRef.current) {
+        window.clearTimeout(pendingSectionTimeoutRef.current);
+        pendingSectionTimeoutRef.current = null;
+      }
       observer?.disconnect();
       scrollTargets.forEach((target) => {
         target.removeEventListener("scroll", scheduleSync, true);
@@ -248,6 +260,17 @@ export const SiteNav = () => {
 
     const sectionId = href.slice(1);
     setActiveSection(sectionId);
+    pendingSectionRef.current = sectionId;
+    if (pendingSectionTimeoutRef.current) {
+      window.clearTimeout(pendingSectionTimeoutRef.current);
+    }
+    pendingSectionTimeoutRef.current = window.setTimeout(() => {
+      pendingSectionRef.current = null;
+      pendingSectionTimeoutRef.current = null;
+      if (pathname === "/") {
+        setActiveSection(getActiveSectionFromViewport());
+      }
+    }, 1200);
     setIsMenuOpen(false);
 
     if (pathname !== "/") {
@@ -256,7 +279,9 @@ export const SiteNav = () => {
 
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        setActiveSection(getActiveSectionFromViewport());
+        if (!pendingSectionRef.current) {
+          setActiveSection(getActiveSectionFromViewport());
+        }
       });
     });
   };
@@ -383,13 +408,7 @@ export const SiteNav = () => {
                             : "border-transparent text-zinc-300 hover:border-zinc-800 hover:bg-zinc-900 hover:text-zinc-50",
                         )}
                       >
-                        <span
-                          className={cn(
-                            "size-1.5 shrink-0 rounded-full",
-                            isActive ? "bg-emerald-400" : "bg-zinc-600",
-                          )}
-                          aria-hidden
-                        />
+                        {isActive ? <span className="size-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden /> : null}
                         {item.label}
                       </Link>
                     </li>

@@ -22,6 +22,10 @@ body {
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   border-color: var(--border);
 }
@@ -39,4 +43,20 @@ a {
 .spline-hero-scene canvas {
   width: 100% !important;
   height: 100% !important;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

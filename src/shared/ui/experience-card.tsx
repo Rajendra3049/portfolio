@@ -198,10 +198,10 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
     <article className="rounded-xl border border-zinc-800 bg-zinc-900/90 p-5 sm:p-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-zinc-50">{experience.company}</h3>
+          <h3 className="break-words text-lg font-semibold text-zinc-50">{experience.company}</h3>
           <p className="mt-1 text-sm text-zinc-400">{experience.duration}</p>
         </div>
-        <p className="text-sm font-medium text-zinc-300">{experience.role}</p>
+        <p className="break-words text-sm font-medium text-zinc-300">{experience.role}</p>
       </div>
 
       <p className="mt-3 text-sm leading-6 text-zinc-300">{experience.summary}</p>
@@ -257,7 +257,7 @@ export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
         ))}
       </ul>
 
-      <p className="mt-5 text-xs leading-6 text-zinc-500">
+      <p className="mt-5 wrap-break-word text-xs leading-6 text-zinc-500">
         <span className="font-semibold uppercase tracking-wide text-zinc-400">Stack · </span>
         {experience.stack.join(" · ")}
       </p>

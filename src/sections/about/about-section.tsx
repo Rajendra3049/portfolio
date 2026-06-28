@@ -19,7 +19,7 @@ export const AboutSection = () => {
         <article className="rounded-xl border border-zinc-800 bg-zinc-900/90 p-5 sm:p-6">
           <p className="text-sm leading-8 text-zinc-300 sm:text-base">{aboutContent.story}</p>
 
-          <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <dl className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:grid-cols-4">
             {aboutContent.highlights.map((highlight) => (
               <div
                 key={highlight.label}
@@ -41,12 +41,12 @@ export const AboutSection = () => {
         </article>
       </FadeIn>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
         {aboutContent.principles.map((principle, index) => (
           <FadeIn
             key={principle.title}
             delay={0.06 + index * 0.07}
-            className={index === aboutContent.principles.length - 1 ? "md:col-span-2" : undefined}
+            className={index === aboutContent.principles.length - 1 ? "lg:col-span-2" : undefined}
           >
             <AboutPrincipleCard principle={principle} />
           </FadeIn>
@@ -61,7 +61,7 @@ export const AboutSection = () => {
           </div>
           <Link
             href="#contact"
-            className="inline-flex shrink-0 items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
+            className="inline-flex w-full shrink-0 items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 sm:w-auto"
           >
             Get in touch
           </Link>

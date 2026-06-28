@@ -13,7 +13,7 @@ export const EngineeringFocusSection = () => {
         description="Skills proven in production logistics SaaS and shipped side projects — application engineering, real-time systems, and delivery tooling."
       />
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2">
         {skillCapabilities.map((capability, index) => (
           <FadeIn key={capability.title} delay={index * 0.07}>
             <CapabilityCard capability={capability} />
