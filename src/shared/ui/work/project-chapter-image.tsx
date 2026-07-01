@@ -9,6 +9,7 @@ type ProjectChapterImageProps = {
   coverImage: string;
   isReversed: boolean;
   isHovered: boolean;
+  contained?: boolean;
   parallaxX?: MotionValue<number>;
   parallaxY?: MotionValue<number>;
   className?: string;
@@ -19,11 +20,13 @@ export const ProjectChapterImage = ({
   coverImage,
   isReversed,
   isHovered,
+  contained = false,
   parallaxX,
   parallaxY,
   className,
 }: ProjectChapterImageProps) => {
   const shouldReduceMotion = useReducedMotion();
+  const shouldClipReveal = !shouldReduceMotion && !contained;
 
   return (
     <div
@@ -35,16 +38,16 @@ export const ProjectChapterImage = ({
       <motion.div
         className="relative aspect-[16/10] overflow-hidden sm:aspect-[5/3]"
         initial={
-          shouldReduceMotion
-            ? false
-            : { clipPath: isReversed ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)" }
+          shouldClipReveal
+            ? { clipPath: isReversed ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)" }
+            : false
         }
         whileInView={
-          shouldReduceMotion
-            ? undefined
-            : { clipPath: "inset(0 0% 0 0)", transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+          shouldClipReveal
+            ? { clipPath: "inset(0 0% 0 0)", transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            : undefined
         }
-        viewport={{ once: true, amount: 0.35 }}
+        viewport={shouldClipReveal ? { once: true, amount: 0.35 } : undefined}
       >
         <motion.div
           className="absolute inset-0 will-change-transform"

@@ -61,7 +61,7 @@ export const ProjectChapter = ({
   const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.14), transparent 42%)`;
 
   const shellVariants = shouldReduceMotion ? chapterShellReducedVariants : chapterShellVariants;
-  const imageVariants = shouldReduceMotion
+  const imageVariants = shouldReduceMotion || contained
     ? chapterImageReducedVariants
     : getChapterImageVariants(!isReversed);
 
@@ -75,9 +75,9 @@ export const ProjectChapter = ({
           ? "box-border snap-start snap-always px-0 py-3 lg:h-full lg:shrink-0 lg:py-0 lg:pb-8 lg:last:pb-0"
           : "scroll-mt-28 py-8 sm:py-10 lg:py-14",
       )}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
+      initial={contained ? "visible" : "hidden"}
+      whileInView={contained ? undefined : "visible"}
+      viewport={contained ? undefined : { once: true, amount: 0.25 }}
       variants={chapterContainerVariants}
       onMouseEnter={() => {
         setIsHovered(true);
@@ -135,6 +135,7 @@ export const ProjectChapter = ({
               coverImage={project.coverImage}
               isReversed={isReversed}
               isHovered={isHovered}
+              contained={contained}
               parallaxX={tiltDisabled ? undefined : parallaxX}
               parallaxY={tiltDisabled ? undefined : parallaxY}
             />
