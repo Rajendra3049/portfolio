@@ -21,7 +21,7 @@ type FlattenedRole = ExperiencePosition & {
 };
 
 const ImpactPointList = ({ points }: { points: string[] }) => (
-  <ul className="space-y-2 text-sm leading-6 text-zinc-300">
+  <ul className="space-y-3 text-sm leading-7 text-zinc-300 sm:text-[15px]">
     {points.map((point) => (
       <li key={point} className="flex gap-2">
         <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emerald-500/80" aria-hidden />
@@ -66,7 +66,7 @@ const RoleRailItem = ({
             : { scale: 1, boxShadow: "0 0 0 0px rgba(16,185,129,0)" }
       }
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className={`relative z-10 w-full cursor-pointer rounded-lg border px-3 py-3 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
+      className={`relative z-10 w-full cursor-pointer rounded-lg border px-3 py-3.5 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
         isActive
           ? "border-emerald-500/50 bg-emerald-500/10 text-zinc-100"
           : "border-zinc-800 bg-zinc-950/40 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-900/80"
@@ -74,8 +74,8 @@ const RoleRailItem = ({
     >
       <div className="flex flex-col gap-1.5">
         <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">{position.duration}</p>
-        <p className="text-[15px] font-semibold leading-tight">{position.role}</p>
-        <p className="text-sm leading-tight text-zinc-400">{company}</p>
+        <p className="text-[15px] font-semibold leading-snug">{position.role}</p>
+        <p className="text-sm leading-snug text-zinc-400">{company}</p>
       </div>
     </motion.button>
   );
@@ -229,7 +229,7 @@ export const ExperienceCard = ({ experiences }: ExperienceCardProps) => {
               exit={detailExit}
               transition={detailTransition}
             >
-              <header className="border-b border-zinc-800 pb-4">
+              <header className="border-b border-zinc-800 pb-5">
                 <div className="flex flex-wrap items-center gap-2">
                   <h4 className="text-base font-semibold text-zinc-50 sm:text-lg">
                     {selectedRole.role}
@@ -245,23 +245,28 @@ export const ExperienceCard = ({ experiences }: ExperienceCardProps) => {
                     </Pill>
                   ) : null}
                 </div>
-                <p className="mt-1 text-sm text-zinc-500">
-                  {selectedRole.duration} · {selectedRole.company}
-                  {selectedLocation ? ` · ${selectedLocation}` : ""}
-                </p>
-                <p className="mt-2 text-sm text-zinc-300">{selectedRole.roleSummary}</p>
-                {selectedRole.headline ? (
-                  <p className="mt-2 text-sm font-medium text-emerald-200/90">
-                    {selectedRole.headline}
+
+                <div className="mt-3 space-y-3">
+                  <p className="text-sm text-zinc-500">
+                    {selectedRole.duration} · {selectedRole.company}
+                    {selectedLocation ? ` · ${selectedLocation}` : ""}
                   </p>
-                ) : selectedRole.scope ? (
-                  <p className="mt-2 text-xs uppercase tracking-wide text-zinc-500">
-                    Responsibility Area · {selectedRole.scope}
-                  </p>
-                ) : null}
+
+                  {selectedRole.headline ? (
+                    <p className="border-l-2 border-emerald-500/50 pl-3 text-base font-medium leading-snug text-emerald-200/90">
+                      {selectedRole.headline}
+                    </p>
+                  ) : selectedRole.scope ? (
+                    <p className="text-xs uppercase tracking-wide text-zinc-500">
+                      Responsibility Area · {selectedRole.scope}
+                    </p>
+                  ) : null}
+
+                  <p className="text-sm leading-relaxed text-zinc-400">{selectedRole.roleSummary}</p>
+                </div>
               </header>
 
-              <div className="mt-4">
+              <div className="mt-5">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
                   Responsibilities
                 </p>

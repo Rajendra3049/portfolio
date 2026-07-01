@@ -12,15 +12,17 @@ export const omnifulExperience: Experience = experienceSchema.parse({
       duration: "Jul 2025 – Present",
       headline:
         "Leading frontend delivery across OMS, sales channels, and shipment for 100+ enterprise tenants.",
+      summary:
+        "Promoted after two years — now guiding frontend standards, delivery cadence, and team growth in a high-volume logistics SaaS platform.",
       scope: "Leadership & delivery",
       tools: ["Delivery", "Mentorship", "Architecture", "Code Review"],
       isPromotion: false,
       isCurrent: true,
       impactPoints: [
-        "Lead frontend delivery across OMS, sales channel, and shipment modules for 100+ enterprise tenants processing 52K+ orders daily.",
         "Drive sprint planning, system design reviews, and code reviews with product, backend, and QA to keep release cadence predictable.",
         "Mentor junior engineers through knowledge sharing and engineering standards, growing team output and code quality.",
         "Introduced an AI-assisted Cursor workflow adopted by the frontend team, cutting feature scaffolding time by ~50%.",
+        "Set frontend architecture standards for modules serving 100+ tenants processing 52K+ orders daily.",
       ],
     },
     {
@@ -28,15 +30,15 @@ export const omnifulExperience: Experience = experienceSchema.parse({
       duration: "Mar 2024 – Jun 2025",
       headline: "Built OMS and real-time order systems — 30% faster loads across 15+ table-heavy pages.",
       summary:
-        "Full-time engineer owning OMS, sales channel integrations, and shipment workflows for 100+ enterprise tenants — focused on performance, real-time visibility, and reusable frontend patterns across high-traffic logistics surfaces.",
+        "Full-time engineer on the core product team — high-traffic table-heavy surfaces, multi-tenant RBAC, and real-time order operations.",
       scope: "OMS & real-time systems",
       tools: ["React Query", "Pusher", "CASL", "Redux"],
       collapsedSummary: "30% load cut · OMS & real-time systems for 100+ tenants",
       impactPoints: [
-        "Engineered OMS, sales channel, and shipment systems for 100+ tenants — cut page load times 30% with React Query caching, code splitting, and memoized list rendering across 15+ pages.",
-        "Reduced code duplication by 40% through reusable components, custom hooks, and centralized utilities shared across logistics modules.",
-        "Built a centralized multi-platform dashboard (Shopify, Amazon) and real-time order tracking via Pusher, improving operational visibility for tenant ops teams.",
-        "Automated shipment creation from a multi-screen manual flow to under 10 seconds, and implemented CASL-based RBAC for safe multi-role tenant UI.",
+        "Cut page load times 30% with React Query caching, code splitting, and memoized list rendering across 15+ table-heavy pages.",
+        "Reduced code duplication by 40% through reusable components, custom hooks, and centralized utilities.",
+        "Built a centralized multi-platform dashboard (Shopify, Amazon) and real-time order tracking via Pusher.",
+        "Automated shipment creation from a multi-screen manual flow to under 10 seconds with CASL-based RBAC for multi-role tenant UI.",
       ],
     },
     {
@@ -44,14 +46,14 @@ export const omnifulExperience: Experience = experienceSchema.parse({
       duration: "Sep 2023 – Feb 2024",
       headline: "Shipped production React UI in a fast-moving logistics SaaS team.",
       summary:
-        "Joined as an intern on the frontend team, shipping production React features while learning the logistics SaaS codebase and contributing to tenant-facing order and inventory workflows.",
+        "First role on the frontend team — focused on tenant-facing order and inventory workflows in a live logistics platform.",
       scope: "Internship · foundational product UI",
       tools: ["React", "Redux", "React Hook Form"],
       collapsedSummary: "Shipped production React UI in a fast-moving logistics SaaS team",
       isCompact: true,
       impactPoints: [
-        "Shipped production React features in a fast-moving logistics SaaS environment, contributing to tenant-facing workflows from day one.",
         "Built responsive UIs, reusable components, and form flows with React Hook Form and Redux Toolkit.",
+        "Contributed to tenant-facing order and inventory workflows from day one in a fast-moving Agile team.",
         "Improved UI performance and upheld clean code, Git, and Agile practices across the frontend codebase.",
       ],
     },
