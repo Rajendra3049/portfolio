@@ -16,62 +16,62 @@ export type AboutOptimizeArea = {
 
 export const aboutContent = {
   eyebrow: "About",
-  title: "Software engineer who ships in production.",
+  title: "I grew into frontend by shipping in production.",
   intro: [
-    "Production SaaS for order management, sales channels, and shipments.",
-    "Intern → Associate Team Lead in two years.",
-    "Own modules in production. Ship side projects end-to-end.",
+    "Started at Omniful as an intern on a live logistics SaaS platform — now Associate Team Lead on OMS, sales channels, and shipment.",
+    "Came through Masai's full-stack program after a Civil Engineering degree; learned by building, not by collecting certificates.",
+    "Still ship side products end-to-end — auth, data, UI, deployment — because ownership doesn't stop at the employer ticket.",
   ],
   workflow: {
     title: "How I work",
-    tagline: "Structured delivery with clear ownership.",
+    tagline: "Ownership from problem to production.",
     steps: [
       {
         step: "01",
         title: "Define",
-        summary: "Module boundaries, predictable data flows, reusable patterns.",
+        summary: "Scope modules, data flows, and reuse boundaries before writing components.",
         accent: "indigo",
       },
       {
         step: "02",
         title: "Build",
-        summary: "Performance-minded implementation with maintainable foundations.",
+        summary: "Performance and maintainability first on screens people use all day.",
         accent: "emerald",
       },
       {
         step: "03",
         title: "Validate",
-        summary: "Measure outcomes through speed, stability, and delivery quality.",
+        summary: "Measure load time, stability, and release quality — not just \"looks done.\"",
         accent: "amber",
       },
       {
         step: "04",
         title: "Ship",
-        summary: "Launch cross-functionally with product, backend, and QA.",
+        summary: "Coordinate with product, backend, and QA so releases land predictably.",
         accent: "zinc",
       },
     ],
   },
   optimize: {
     title: "What I optimize for",
-    tagline: "Outcomes that hold up in production.",
+    tagline: "What holds up when usage scales.",
     areas: [
       {
         title: "Performance",
         headline: "Fast on data-heavy screens.",
-        detail: "Load-time efficiency across table-heavy operational UIs.",
+        detail: "Table-heavy operational UIs that stay responsive.",
         accent: "emerald",
       },
       {
         title: "Real-time",
-        headline: "Live when operations depend on it.",
-        detail: "Instant feedback for order tracking, inventory, and tenant workflows.",
+        headline: "Live when ops depend on it.",
+        detail: "Order tracking, inventory, and tenant workflows with instant feedback.",
         accent: "indigo",
       },
       {
         title: "Foundations",
-        headline: "Built to scale with complexity.",
-        detail: "Architecture that grows with tenant count and product surface area.",
+        headline: "Built for growing complexity.",
+        detail: "Architecture that survives more tenants and more modules.",
         accent: "amber",
       },
     ],
@@ -79,8 +79,8 @@ export const aboutContent = {
   openTo: {
     label: "Open to",
     description:
-      "Software engineering and SaaS product roles with meaningful surface ownership.",
-    cta: { label: "Get in touch", href: "#contact" },
+      "Frontend and product engineering roles where I can own meaningful product surface — especially SaaS, fintech, and operations software.",
+    cta: { label: "Start a conversation", href: "#contact" },
   },
 } as const;
 

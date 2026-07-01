@@ -35,7 +35,7 @@ export const Footer = () => {
             variants={revealVariants}
           >
             <span className="size-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden />
-            Signature
+            {footerContent.eyebrow}
           </motion.p>
 
           <motion.h2
@@ -46,10 +46,10 @@ export const Footer = () => {
           </motion.h2>
 
           <motion.p
-            className="mt-5 max-w-md text-sm text-zinc-500 sm:text-base"
+            className="mt-5 max-w-xl text-sm text-zinc-500 sm:text-base"
             variants={revealVariants}
           >
-            The closing signature — craft, clarity, and production-grade frontend work.
+            {footerContent.signatureClosing}
           </motion.p>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.7fr)_minmax(0,0.8fr)] lg:gap-12">

@@ -7,7 +7,7 @@ import { SectionHeading } from "@/shared/ui/section-heading";
 import { SectionShell } from "@/shared/ui/section-shell";
 
 const experienceProofItems = [
-  "3+ yrs frontend",
+  "Sep 2023 – present",
   "100+ tenants",
   "52K+ orders/day",
   "Intern → Team Lead",
@@ -21,8 +21,8 @@ export const ExperienceSection = () => {
       <div className="relative z-10">
         <SectionHeading
           eyebrow="Experience"
-          title="Role timeline and responsibilities."
-          description="A simple role-by-role timeline showing company, duration, and core responsibilities."
+          title="One platform. Three roles. More ownership each year."
+          description="~2.5 years at Omniful — from intern on production UI to leading frontend delivery on core logistics modules."
         />
 
         <ProofTags

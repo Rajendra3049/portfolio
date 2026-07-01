@@ -4,17 +4,17 @@ export const hisabDiaryProject: Project = projectSchema.parse({
   title: "Hisab Diary",
   slug: "hisab-diary",
   shortDescription:
-    "Personal finance platform for expense tracking, categorization, analytics, and reporting.",
+    "Personal finance app for tracking spending, categories, and trends — inspired by how families actually keep \"hisab.\"",
   heroTagline:
-    "Built a live expense management product with categorization and analytics — fast capture and clear spending insights in one place.",
+    "A live expense tracker with fast capture and clear spending insights — built solo on Next.js and Supabase.",
   longDescription:
     "Hisab Diary is an expense management product for tracking spending, organizing categories, reviewing financial patterns, and reporting through a clean, mobile-friendly interface.",
   problem:
-    "People need fast expense capture and meaningful spending insights in one product — without the friction of spreadsheets or bare-bones trackers.",
+    "Most trackers are either too bare or too heavy. People need quick entry and understandable patterns without spreadsheet friction.",
   originStory:
-    "Growing up, 'hisab' (accounting) was how we tracked money informally — notebook entries and mental math. I wanted a digital version that respected that simplicity but added categorization, trends, and reporting so users could understand where their money goes.",
-  role: "Solo builder — product, frontend, backend, and deployment",
-  timeline: "2024 · full-stack product build",
+    "\"Hisab\" is how we tracked money informally growing up — notebook entries and mental math. I wanted that simplicity with categorization and trends.",
+  role: "Solo builder — product, frontend, backend, deployment",
+  timeline: "2024",
   caseStudy: {
     myRole: [
       "Designed and built the full expense tracking experience — entry, categories, analytics, and auth.",
@@ -37,7 +37,7 @@ export const hisabDiaryProject: Project = projectSchema.parse({
       "Open-source repo demonstrating full product ownership beyond employer work.",
     ],
     differentiator: [
-      "Finance UX rooted in real 'hisab' habits — fast entry first, insights second.",
+      "Finance UX rooted in real \"hisab\" habits — fast entry first, insights second.",
       "Not a CRUD demo: includes analytics views, auth, and production deployment.",
       "Showcases product thinking for data-heavy SaaS — validation, aggregation, and responsive dashboards.",
     ],

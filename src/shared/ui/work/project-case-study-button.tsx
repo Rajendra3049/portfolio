@@ -17,7 +17,7 @@ type ProjectCaseStudyButtonProps = {
 export const ProjectCaseStudyButton = ({
   href,
   className,
-  label = "View case study",
+  label = "Case study",
 }: ProjectCaseStudyButtonProps) => {
   const shouldReduceMotion = useReducedMotion();
 

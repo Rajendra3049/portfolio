@@ -24,9 +24,9 @@ export const FeaturedWorkSection = () => {
 
       <div className="relative z-10">
         <SectionHeading
-          eyebrow="Featured Work"
-          title="Products I shipped — not tutorials."
-          description="Four products, four problems solved — scroll the reel or jump by number."
+          eyebrow="Work"
+          title="Products I built and shipped."
+          description="Employer-scale SaaS by day, solo products by night — each with a real problem, live URL, and source code."
         />
 
         <ProofTags

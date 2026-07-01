@@ -4,17 +4,17 @@ export const taskorbitProject: Project = projectSchema.parse({
   title: "TaskOrbit",
   slug: "taskorbit",
   shortDescription:
-    "Productivity and task management platform for organizing, prioritizing, and tracking work.",
+    "Personal productivity platform for tasks, routines, and planning — built and maintained solo.",
   heroTagline:
-    "Built a live task management product with auth, filtering, and scalable architecture — shipped solo from UI through deployment.",
+    "A live productivity system I use to manage tasks, planning, and workflows — shipped solo from auth to deployment.",
   longDescription:
-    "TaskOrbit is a task management application for organizing, prioritizing, and tracking work through creation, editing, status management, due-date tracking, and filtering workflows.",
+    "TaskOrbit is a productivity application for organizing tasks, tracking status and due dates, and managing daily workflows through a single workspace.",
   problem:
-    "Users need a structured way to manage tasks, statuses, due dates, and filters without losing speed during daily use.",
+    "Scattered tools break focus. I needed one workspace for tasks, status, due dates, and planning without slowing down daily use.",
   originStory:
-    "During busy development weeks at Omniful, I kept juggling deadlines across multiple tools. I wanted a single workspace that could handle prioritization, status tracking, and routines — so I built TaskOrbit as a productivity system I would actually use every day.",
-  role: "Solo builder — product, frontend, backend, and deployment",
-  timeline: "2024 – 2025 · ongoing product build",
+    "During busy weeks at Omniful, I was juggling deadlines across multiple tools. I built TaskOrbit as the system I would actually open every day.",
+  role: "Solo builder — product, frontend, backend, deployment",
+  timeline: "2024 – present",
   caseStudy: {
     myRole: [
       "Owned end-to-end product design, UI implementation, API integrations, authentication, and production deployment.",
@@ -22,14 +22,14 @@ export const taskorbitProject: Project = projectSchema.parse({
       "Built task creation, editing, status management, due-date tracking, and filtering workflows.",
     ],
     challenge: [
-      "Keeping task-heavy screens responsive as data volume and filter combinations grew.",
-      "Designing state transitions that stay predictable across create, edit, and status-change flows.",
-      "Balancing a simple daily workflow with enough structure for planning and routines.",
+      "Keeping task-heavy screens responsive as filters and data volume grew.",
+      "Designing predictable state across create, edit, and status-change flows.",
+      "Balancing a simple daily workflow with enough structure for planning.",
     ],
     approach: [
       "Built a feature-oriented frontend with shared UI primitives and hooks to avoid duplication across modules.",
       "Used TanStack Query for server-state caching and Zustand for lightweight client workflow state.",
-      "Deployed on Next.js + Supabase with PostgreSQL for reliable, scalable data persistence.",
+      "Deployed on Next.js + Supabase with PostgreSQL for auth and reliable data persistence.",
       "Designed mobile-first layouts so task entry and review stay fast on any device.",
     ],
     outcomes: [

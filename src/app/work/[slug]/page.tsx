@@ -80,7 +80,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
 
         <header className="mt-8">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400">
-            Project Case Study
+            Case study
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
             {project.title}
@@ -129,14 +129,14 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
               {...getLinkTargetProps(project.liveUrl)}
               className="inline-flex w-full items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 min-[420px]:w-auto"
             >
-              Live Product
+              Live site
             </Link>
             <Link
               href={project.githubUrl}
               {...getLinkTargetProps(project.githubUrl)}
               className="inline-flex w-full items-center justify-center rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800 min-[420px]:w-auto"
             >
-              Source Code
+              Source code
             </Link>
           </div>
         </header>
@@ -181,14 +181,14 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
             {...getLinkTargetProps(project.liveUrl)}
             className="inline-flex w-full items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 min-[420px]:w-auto"
           >
-            Live Product
+            Live site
           </Link>
           <Link
             href={project.githubUrl}
             {...getLinkTargetProps(project.githubUrl)}
             className="inline-flex w-full items-center justify-center rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800 min-[420px]:w-auto"
           >
-            Source Code
+            Source code
           </Link>
           <Link
             href="/#work"

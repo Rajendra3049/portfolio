@@ -110,7 +110,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </dl>
 
           <p className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-200 transition-colors group-hover:text-white">
-            View case study
+            Case study
             <motion.span
               className="inline-flex"
               whileHover={shouldReduceMotion ? undefined : { x: 2 }}

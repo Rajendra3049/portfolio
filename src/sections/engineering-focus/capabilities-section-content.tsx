@@ -13,9 +13,9 @@ import {
 } from "@/shared/lib/motion/capability-variants";
 
 const EYEBROW = "Capabilities";
-const TITLE = "What I bring to a product team.";
+const TITLE = "How I solve product problems in production.";
 const DESCRIPTION =
-  "The stack I ship with — and the product problems I solve in production.";
+  "Not a tool list — the engineering problems I own and the outcomes they produced.";
 
 export const CapabilitiesSectionContent = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -68,7 +68,7 @@ export const CapabilitiesSectionContent = () => {
         >
           <span className="inline-flex items-center gap-3">
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-emerald-500/40" aria-hidden />
-            Tech stack
+            Core technologies
             <span className="h-px w-8 bg-gradient-to-l from-transparent to-emerald-500/40" aria-hidden />
           </span>
         </motion.p>

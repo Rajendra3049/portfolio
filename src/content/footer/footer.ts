@@ -1,13 +1,14 @@
 export const footerContent = {
-  eyebrow: "Footer",
+  eyebrow: "Signature",
+  signatureClosing:
+    "Built in Gurugram. Shipping production SaaS by day, side products by night. If you read this far — let's talk.",
   name: "Rajendra Patel.",
   intro:
-    "Frontend Engineer building production SaaS products with React, TypeScript, and modern engineering practices.",
-  status: "Open to Opportunities",
-  connectLabel: "Let's Connect",
+    "Frontend engineer on enterprise logistics software. React, TypeScript, real-time systems, and software that survives real usage.",
+  status: "Open to conversation",
+  connectLabel: "Connect",
   navLinks: [
-    { label: "Projects", href: "#work" },
-    { label: "Experience", href: "#experience" },
+    { label: "Work", href: "#work" },
     { label: "Contact", href: "#contact" },
     { label: "Resume", href: "/resume" },
   ],

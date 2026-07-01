@@ -124,7 +124,7 @@ export const ProjectCardActions = ({ project, className }: ProjectCardActionsPro
       role="group"
       aria-label={`${project.title} actions`}
     >
-      <PrimaryAction href={`/work/${project.slug}`} label="View case study" />
+      <PrimaryAction href={`/work/${project.slug}`} label="Case study" />
 
       <div className="grid w-full min-w-0 grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
         <SecondaryAction

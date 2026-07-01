@@ -14,19 +14,19 @@ export type ContactAction = {
 
 export const contactContent = {
   eyebrow: "Contact",
-  headlineLines: ["Let's build software", "that users remember."],
+  headlineLines: ["Have a product worth", "building well?"],
   subtitle:
-    "Frontend engineer who ships production SaaS — open to meaningful conversations.",
+    "I'm a frontend engineer who cares about production quality, team delivery, and software people actually use. Happy to talk roles, products, or hard UI problems.",
   availability: {
-    status: "Open to Opportunities",
-    joiner: "Immediate Joiner",
+    status: "Available for the right role",
+    joiner: "Can join immediately",
     responseTime: "Usually replies within 24 hours",
   },
   actions: [
     {
       id: "email",
       title: "Email",
-      description: "Direct outreach for roles and collaborations.",
+      description: "Best for direct notes, referrals, or role details.",
       href: "mailto:rajendrapatel0430@gmail.com",
       displayValue: "rajendrapatel0430@gmail.com",
       copyValue: "rajendrapatel0430@gmail.com",
@@ -35,7 +35,7 @@ export const contactContent = {
     {
       id: "linkedin",
       title: "LinkedIn",
-      description: "Best for recruiters and hiring teams.",
+      description: "Recruiters and hiring managers — message me here.",
       href: "https://www.linkedin.com/in/rajendra-patel-308237238/",
       displayValue: "linkedin.com/in/rajendra-patel-308237238",
       copyValue: "https://www.linkedin.com/in/rajendra-patel-308237238/",
@@ -44,14 +44,14 @@ export const contactContent = {
     {
       id: "resume",
       title: "Resume",
-      description: "Experience, impact, and production work.",
+      description: "One-page summary of experience and impact.",
       href: "/resume",
       accent: "amber",
     },
     {
       id: "github",
       title: "GitHub",
-      description: "Code, side projects, and engineering craft.",
+      description: "Code, side projects, and how I build.",
       href: "https://github.com/Rajendra3049",
       displayValue: "github.com/Rajendra3049",
       copyValue: "https://github.com/Rajendra3049",
@@ -59,8 +59,8 @@ export const contactContent = {
     },
   ],
   finalCta: {
-    label: "Start a conversation",
+    label: "Say hello",
     href: "mailto:rajendrapatel0430@gmail.com",
-    subtext: "I'd love to hear about the product you're building.",
+    subtext: "Tell me what you're building and where frontend ownership matters.",
   },
 } as const;

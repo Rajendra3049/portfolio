@@ -6,7 +6,7 @@ export const wingShooterProject: Project = projectSchema.parse({
   shortDescription:
     "Real-time browser shooting game with responsive controls, collision detection, and score-driven gameplay.",
   heroTagline:
-    "Shipped a playable real-time browser game under deadline — proving collision logic, game state, and team coordination.",
+    "Real-time browser game shipped in 5 days — collision logic, game state, and performance under pressure.",
   longDescription:
     "WingShooter is a collaborative browser game where players shoot targets, dodge threats, and chase high scores through fast-paced, real-time interaction loops.",
   problem:
@@ -40,7 +40,7 @@ export const wingShooterProject: Project = projectSchema.parse({
     differentiator: [
       "Real-time systems proof — not a static landing page or form-based CRUD app.",
       "Team collaboration with clear ownership of gameplay frontend under production-like pressure.",
-      "Shows debugging and performance instincts that carry over to Omniful's real-time order tracking work.",
+      "Early proof of real-time state instincts that carried over to Omniful's live order tracking work.",
     ],
   },
   techStack: ["TypeScript", "React", "Redux Thunk", "Node.js", "Express.js", "MongoDB"],
