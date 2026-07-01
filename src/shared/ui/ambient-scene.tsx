@@ -7,7 +7,7 @@ import { cn } from "@/shared/lib/utils";
 const NOISE_TEXTURE =
   "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')";
 
-type AmbientScenePreset = "hero" | "work" | "experience";
+type AmbientScenePreset = "hero" | "work" | "experience" | "capabilities";
 
 type AmbientSceneProps = {
   preset?: AmbientScenePreset;
@@ -92,8 +92,41 @@ const presetConfig: Record<
     rings: false,
     noise: false,
   },
+  capabilities: {
+    gradient: "bg-[radial-gradient(ellipse_at_85%_0%,rgba(16,185,129,0.06),transparent_50%)]",
+    overlay:
+      "bg-[linear-gradient(to_bottom,rgba(9,9,11,0.05),rgba(9,9,11,0.5)_55%,rgba(9,9,11,0.88))]",
+    spotlightSize: 500,
+    spotlightOpacity: 0.065,
+    grid: false,
+    rings: false,
+    noise: true,
+  },
 };
 
+
+const CapabilitiesOrbs = () => (
+  <>
+    <motion.div
+      className="absolute -right-16 top-20 h-64 w-64 rounded-full bg-emerald-500/8 blur-3xl"
+      animate={{
+        x: [0, -12, 8, -10, 0],
+        y: [0, 8, 4, -6, 0],
+        scale: [1, 1.05, 1.02, 1.06, 1],
+      }}
+      transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+    />
+    <motion.div
+      className="absolute -left-24 bottom-16 h-56 w-56 rounded-full bg-emerald-400/6 blur-3xl"
+      animate={{
+        x: [0, 14, -6, 10, 0],
+        y: [0, -6, 8, 2, 0],
+        scale: [1, 1.04, 1.01, 1.05, 1],
+      }}
+      transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+    />
+  </>
+);
 
 const WorkOrbs = () => (
   <>
@@ -190,6 +223,7 @@ export const AmbientScene = ({ preset = "work", className }: AmbientSceneProps) 
       {preset === "hero" ? <HeroConcentricRings /> : null}
       {preset === "work" ? <WorkOrbs /> : null}
       {preset === "experience" ? <ExperienceOrbs /> : null}
+      {preset === "capabilities" ? <CapabilitiesOrbs /> : null}
 
       {!disabled ? (
         <motion.div className="absolute inset-0" style={{ background: spotlight }} />

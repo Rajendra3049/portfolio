@@ -2,7 +2,6 @@ import Link from "next/link";
 import { aboutContent } from "@/content/about/about";
 import { AboutPrincipleCard } from "@/shared/ui/about-principle-card";
 import { FadeIn } from "@/shared/ui/fade-in";
-import { Pill } from "@/shared/ui/pill";
 import { SectionHeading } from "@/shared/ui/section-heading";
 import { SectionShell } from "@/shared/ui/section-shell";
 
@@ -30,14 +29,6 @@ export const AboutSection = () => {
               </div>
             ))}
           </dl>
-
-          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Core focus areas">
-            {aboutContent.focusAreas.map((area) => (
-              <li key={area}>
-                <Pill>{area}</Pill>
-              </li>
-            ))}
-          </ul>
         </article>
       </FadeIn>
 

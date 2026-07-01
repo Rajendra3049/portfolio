@@ -25,14 +25,6 @@ export const aboutContent = {
     { label: "Domain", value: "Logistics SaaS" },
     { label: "Location", value: "Gurugram, India" },
   ],
-  focusAreas: [
-    "React.js",
-    "Next.js",
-    "TypeScript",
-    "Real-Time Systems",
-    "Performance Optimization",
-    "SaaS",
-  ],
   principles: [
     {
       title: "How I work",
