@@ -86,7 +86,7 @@ export const CapabilityCard = ({ capability, variants }: CapabilityCardProps) =>
       <div className="relative mt-4">
         <Link
           href={capability.proofHref}
-          className="interactive-link inline-flex items-start gap-1.5 text-sm leading-6 text-zinc-300 transition-colors hover:text-zinc-100"
+          className="interactive-link inline-flex cursor-pointer items-start gap-1.5 text-sm leading-6 text-zinc-300 transition-colors hover:text-zinc-100"
         >
           <span className={cn("mt-2 size-1.5 shrink-0 rounded-full", styles.dot)} aria-hidden />
           <span>

@@ -26,7 +26,7 @@ export const AboutCta = memo(({ label, description, cta }: AboutCtaProps) => {
         </div>
         <Link
           href={cta.href}
-          className="inline-flex w-full shrink-0 items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 sm:w-auto"
+          className="inline-flex w-full shrink-0 cursor-pointer items-center justify-center rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 sm:w-auto"
         >
           {cta.label}
         </Link>
@@ -63,7 +63,7 @@ export const AboutCta = memo(({ label, description, cta }: AboutCtaProps) => {
         <Magnetic strength={8}>
           <Link
             href={cta.href}
-            className="group inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 sm:w-auto"
+            className="group inline-flex w-full shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 sm:w-auto"
           >
             {cta.label}
             <ArrowRight

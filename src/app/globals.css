@@ -34,6 +34,32 @@ a {
   text-underline-offset: 4px;
 }
 
+a[href],
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+label[for],
+select,
+summary,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[disabled],
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.interactive-link,
+.interactive-press {
+  cursor: pointer;
+}
+
 @media (pointer: fine) {
   .interactive-link {
     position: relative;

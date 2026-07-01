@@ -134,7 +134,7 @@ const ChapterButton = ({
         aria-current={isActive ? "true" : undefined}
         aria-label={`Go to ${project.title}, project ${index + 1} of ${total}`}
         className={cn(
-          "shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold tracking-widest transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400",
+          "shrink-0 cursor-pointer rounded-full px-3 py-1.5 text-xs font-semibold tracking-widest transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400",
           isActive
             ? "bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/40"
             : "bg-zinc-900/80 text-zinc-500 hover:text-zinc-300",
@@ -154,7 +154,7 @@ const ChapterButton = ({
       aria-current={isActive ? "true" : undefined}
       aria-label={`Go to ${project.title}, project ${index + 1} of ${total}`}
       className={cn(
-        "group relative z-10 flex w-full items-center gap-3 rounded-xl py-1 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400",
+        "group relative z-10 flex w-full cursor-pointer items-center gap-3 rounded-xl py-1 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400",
         isActive ? "opacity-100" : "opacity-80 hover:opacity-100",
       )}
     >

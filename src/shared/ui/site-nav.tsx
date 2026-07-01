@@ -119,7 +119,7 @@ const NavLink = ({
       onClick={handleClick}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-200",
+        "rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-200 cursor-pointer",
         isActive
           ? "border border-zinc-700/90 bg-zinc-800 text-zinc-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
           : "border border-transparent text-zinc-400 hover:bg-zinc-900/70 hover:text-zinc-200",
@@ -311,7 +311,7 @@ export const SiteNav = () => {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
         <Link
           href="/"
-          className="group flex min-w-0 items-center gap-3"
+          className="group flex min-w-0 cursor-pointer items-center gap-3"
           aria-label="Go to homepage"
           onClick={() => setIsMenuOpen(false)}
         >
@@ -350,7 +350,7 @@ export const SiteNav = () => {
               href={linkedInLink.href}
               {...getLinkTargetProps(linkedInLink.href)}
               aria-label={linkedInLink.label}
-              className="rounded-md p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+              className="rounded-md p-2 cursor-pointer text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
             >
               <LinkedInIcon className="size-4" />
             </Link>
@@ -371,7 +371,7 @@ export const SiteNav = () => {
 
         <button
           type="button"
-          className="rounded-md p-2 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-50 md:hidden"
+          className="cursor-pointer rounded-md p-2 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-50 md:hidden"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -384,7 +384,7 @@ export const SiteNav = () => {
         <div className="md:hidden">
           <button
             type="button"
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-[1px]"
+            className="fixed inset-0 z-40 cursor-pointer bg-black/60 backdrop-blur-[1px]"
             aria-label="Close menu overlay"
             onClick={() => setIsMenuOpen(false)}
           />
@@ -402,7 +402,7 @@ export const SiteNav = () => {
                         onClick={() => handleNavClick(item.href)}
                         aria-current={isActive ? "page" : undefined}
                         className={cn(
-                          "flex items-center gap-3 rounded-lg border px-3 py-3 text-base font-medium transition-colors",
+                          "flex cursor-pointer items-center gap-3 rounded-lg border px-3 py-3 text-base font-medium transition-colors",
                           isActive
                             ? "border-zinc-700 bg-zinc-800 text-zinc-50"
                             : "border-transparent text-zinc-300 hover:border-zinc-800 hover:bg-zinc-900 hover:text-zinc-50",
@@ -422,7 +422,7 @@ export const SiteNav = () => {
                 <Link
                   href={linkedInLink.href}
                   {...getLinkTargetProps(linkedInLink.href)}
-                  className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-zinc-50"
+                  className="flex cursor-pointer items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-zinc-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <LinkedInIcon className="size-4" />

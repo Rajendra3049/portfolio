@@ -135,7 +135,7 @@ export const HeroStatusPanel = ({
           <p className="mb-3 text-xs uppercase tracking-wide text-zinc-500">Featured</p>
           <Link
             href={`/work/${featuredProject.slug}`}
-            className="group block overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-950/80 transition-colors hover:border-zinc-700"
+            className="group block cursor-pointer overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-950/80 transition-colors hover:border-zinc-700"
           >
             <div className="relative aspect-[16/10] overflow-hidden">
               <Image

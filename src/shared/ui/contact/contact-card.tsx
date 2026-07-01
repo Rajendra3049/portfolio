@@ -77,7 +77,7 @@ export const ContactCard = memo(({ action, index }: ContactCardProps) => {
         <Link
           href={action.href}
           className={cn(
-            "grid min-h-0 flex-1 grid-rows-[2.5rem_1fr] gap-6 outline-none",
+            "grid min-h-0 flex-1 cursor-pointer grid-rows-[2.5rem_1fr] gap-6 outline-none",
             "focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
           )}
           {...getLinkTargetProps(action.href)}

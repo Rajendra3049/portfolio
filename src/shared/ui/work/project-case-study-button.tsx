@@ -30,7 +30,7 @@ export const ProjectCaseStudyButton = ({ href, className }: ProjectCaseStudyButt
 
         <Link
           href={href}
-          className="relative inline-flex items-center gap-2 rounded-full border border-zinc-700/90 bg-zinc-900/90 px-5 py-2.5 text-sm font-medium text-zinc-100 transition-colors hover:border-emerald-500/40 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+          className="relative inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-700/90 bg-zinc-900/90 px-5 py-2.5 text-sm font-medium text-zinc-100 transition-colors hover:border-emerald-500/40 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
         >
           View case study
           <motion.span

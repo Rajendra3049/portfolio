@@ -51,7 +51,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       }}
       whileHover={shouldReduceMotion ? undefined : { y: -4 }}
     >
-      <Link href={`/work/${project.slug}`} className="block h-full" tabIndex={0}>
+      <Link href={`/work/${project.slug}`} className="block h-full cursor-pointer" tabIndex={0}>
         <div className="relative overflow-hidden">
           <motion.div
             whileHover={shouldReduceMotion ? undefined : { scale: 1.035 }}

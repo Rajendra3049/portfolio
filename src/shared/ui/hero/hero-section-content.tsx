@@ -110,7 +110,7 @@ export const HeroSectionContent = ({ parallax }: HeroSectionContentProps) => {
 
       <motion.a
         href="#experience"
-        className="interactive-link group relative z-10 mx-auto inline-flex items-center gap-1.5 pb-5 pt-2 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+        className="interactive-link group relative z-10 mx-auto inline-flex cursor-pointer items-center gap-1.5 pb-5 pt-2 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
         initial="hidden"
         animate="visible"
         variants={childVariants ?? heroScrollCueVariants}

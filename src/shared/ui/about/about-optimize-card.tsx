@@ -68,6 +68,7 @@ export const AboutOptimizeCard = memo(({ area, index }: AboutOptimizeCardProps) 
 
   return (
     <div
+      className="cursor-pointer"
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
       onFocus={() => setIsExpanded(true)}
@@ -85,10 +86,10 @@ export const AboutOptimizeCard = memo(({ area, index }: AboutOptimizeCardProps) 
     >
       <SpotlightSurface
         className={cn(
-          "rounded-xl border bg-zinc-900/60 p-4",
+          "cursor-pointer rounded-xl border bg-zinc-900/60 p-4",
           accent.border,
           accent.hoverBorder,
-          "cursor-default transition-[border-color,box-shadow] duration-300",
+          "transition-[border-color,box-shadow] duration-300",
           "hover:shadow-[0_14px_36px_rgba(0,0,0,0.28)]",
         )}
       >

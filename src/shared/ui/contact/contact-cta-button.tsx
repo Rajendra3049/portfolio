@@ -65,7 +65,7 @@ export const ContactCtaButton = memo(({ label, href, subtext }: ContactCtaButton
         href={href}
         onClick={handleClick}
         className={cn(
-          "group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full",
+          "group relative inline-flex cursor-pointer items-center justify-center gap-2.5 overflow-hidden rounded-full",
           "bg-zinc-100 px-8 py-3.5 text-base font-semibold text-zinc-900",
           "shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_12px_40px_rgba(0,0,0,0.35)]",
           "transition-[background-color,box-shadow] duration-300",

@@ -29,12 +29,12 @@ export const Magnetic = ({ children, className, strength = 12 }: MagneticProps) 
   const springY = useSpring(y, springConfig);
 
   if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
+    return <div className={cn("cursor-pointer", className)}>{children}</div>;
   }
 
   return (
     <motion.div
-      className={cn("inline-flex", className)}
+      className={cn("inline-flex cursor-pointer", className)}
       style={{ x: springX, y: springY }}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
