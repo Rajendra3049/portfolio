@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { type Project } from "@/entities/project";
 import { AnimatedCounter } from "@/shared/ui/animated-counter";
 import { Pill } from "@/shared/ui/pill";
-import { ProjectCaseStudyButton } from "@/shared/ui/work/project-case-study-button";
+import { ProjectCardActions } from "@/shared/ui/work/project-chapter-actions";
 import {
   badgeContainerVariants,
   badgeItemVariants,
@@ -48,7 +48,7 @@ export const ProjectChapterContent = ({
   const primaryCategory = project.categories[0];
 
   return (
-    <div className="relative flex min-w-0 flex-col justify-center">
+    <div className="relative flex min-w-0 flex-col">
       <motion.span
         className="pointer-events-none absolute -left-2 top-0 select-none text-7xl font-bold tracking-tighter text-white sm:text-8xl"
         variants={childVariants}
@@ -58,7 +58,7 @@ export const ProjectChapterContent = ({
         {chapterNumber}
       </motion.span>
 
-      <div className="relative z-10 space-y-4 sm:space-y-5">
+      <div className="relative z-10 flex min-w-0 flex-col gap-4 sm:gap-5">
         <motion.div variants={shouldReduceMotion ? childVariants : chapterTitleVariants}>
           {primaryCategory ? (
             <motion.div
@@ -132,7 +132,7 @@ export const ProjectChapterContent = ({
         </motion.ul>
 
         <motion.div variants={shouldReduceMotion ? childVariants : chapterCtaVariants}>
-          <ProjectCaseStudyButton href={`/work/${project.slug}`} />
+          <ProjectCardActions project={project} />
         </motion.div>
       </div>
     </div>

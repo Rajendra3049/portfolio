@@ -1,6 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  getPanelScrollTopForIndex,
+  isPanelAtBottom,
+  resolvePanelIndex,
+} from "@/shared/lib/work-scroll";
 
 type UseScrollSpyOptions = {
   itemCount: number;
@@ -36,12 +41,18 @@ export const useScrollSpy = ({
     const container = scrollContainerRef.current;
 
     if (isPanelScrollActive(container) && container) {
-      const atBottom =
-        container.scrollTop + container.clientHeight >= container.scrollHeight - 12;
-      if (atBottom) {
+      if (isPanelAtBottom(container)) {
         setActiveIndex(itemCount - 1);
         return;
       }
+
+      const indexFromScroll = resolvePanelIndex(
+        container,
+        itemCount,
+        (index) => itemRefs.current[index] ?? null,
+      );
+      setActiveIndex(indexFromScroll);
+      return;
     } else {
       const scrollBottom = window.scrollY + window.innerHeight;
       const pageBottom = document.documentElement.scrollHeight;
@@ -82,6 +93,11 @@ export const useScrollSpy = ({
     [],
   );
 
+  const getItemNode = useCallback(
+    (index: number) => itemRefs.current[index] ?? null,
+    [],
+  );
+
   const scrollToIndex = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
     const node = itemRefs.current[index];
     if (!node) {
@@ -91,9 +107,12 @@ export const useScrollSpy = ({
     const container = scrollContainerRef.current;
 
     if (isPanelScrollActive(container) && container) {
-      const maxScroll = container.scrollHeight - container.clientHeight;
-      const isLast = index === itemCount - 1;
-      const top = isLast ? maxScroll : node.offsetTop;
+      const top = getPanelScrollTopForIndex(
+        container,
+        index,
+        itemCount,
+        (i) => itemRefs.current[i] ?? null,
+      );
 
       container.scrollTo({
         top,
@@ -173,6 +192,7 @@ export const useScrollSpy = ({
     progress,
     scrollContainerRef,
     setItemRef,
+    getItemNode,
     scrollToIndex,
   };
 };

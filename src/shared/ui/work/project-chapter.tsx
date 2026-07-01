@@ -10,6 +10,7 @@ import {
     chapterShellVariants,
     getChapterImageVariants,
 } from "@/shared/lib/motion/work-variants";
+import { workChapterPanelMinClass } from "@/shared/lib/work-layout";
 import { cn } from "@/shared/lib/utils";
 import { ProjectChapterContent } from "@/shared/ui/work/project-chapter-content";
 import { ProjectChapterImage } from "@/shared/ui/work/project-chapter-image";
@@ -72,7 +73,10 @@ export const ProjectChapter = ({
       aria-labelledby={titleId}
       className={cn(
         contained
-          ? "box-border snap-start snap-always px-0 py-3 lg:h-full lg:shrink-0 lg:py-0 lg:pb-8 lg:last:pb-0"
+          ? cn(
+              "box-border snap-start snap-always px-0 py-3 lg:shrink-0 lg:py-0 lg:pb-6 lg:last:pb-0",
+              workChapterPanelMinClass,
+            )
           : "scroll-mt-28 py-8 sm:py-10 lg:py-14",
       )}
       initial={contained ? "visible" : "hidden"}
@@ -90,7 +94,7 @@ export const ProjectChapter = ({
     >
       <motion.div
         className={cn(
-          "group/chapter relative flex w-full flex-col overflow-hidden rounded-3xl border border-zinc-800/90 bg-zinc-900/50 p-4 sm:p-5 lg:p-6",
+          "group/chapter relative isolate flex w-full min-w-0 flex-col rounded-3xl border border-zinc-800/90 bg-zinc-900/50 p-4 sm:p-5 lg:p-6",
           isHovered && "border-zinc-700/90",
         )}
         variants={shellVariants}
@@ -116,7 +120,7 @@ export const ProjectChapter = ({
 
         {!tiltDisabled && isHovered ? (
           <span
-            className="pointer-events-none absolute -inset-px z-0 rounded-3xl opacity-70"
+            className="pointer-events-none absolute -inset-px z-0 overflow-clip rounded-3xl opacity-70"
             aria-hidden
           >
             <span className="block size-full animate-spin rounded-3xl bg-[conic-gradient(from_0deg,transparent,rgba(16,185,129,0.35),transparent)] [animation-duration:4s]" />
@@ -125,11 +129,11 @@ export const ProjectChapter = ({
 
         <div
           className={cn(
-            "relative z-20 grid flex-1 items-center gap-6 lg:grid-cols-2 lg:gap-10",
+            "relative z-20 grid w-full min-w-0 items-start gap-6 lg:grid-cols-2 lg:gap-8",
             isReversed && "lg:[&>*:first-child]:order-2",
           )}
         >
-          <motion.div variants={imageVariants}>
+          <motion.div className="min-w-0" variants={imageVariants}>
             <ProjectChapterImage
               title={project.title}
               coverImage={project.coverImage}
@@ -141,7 +145,10 @@ export const ProjectChapter = ({
             />
           </motion.div>
 
-          <motion.div variants={shouldReduceMotion ? chapterReducedChildVariants : undefined}>
+          <motion.div
+            className="min-w-0"
+            variants={shouldReduceMotion ? chapterReducedChildVariants : undefined}
+          >
             <ProjectChapterContent
               project={project}
               chapterNumber={chapterNumber}

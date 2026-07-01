@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import { motion, useReducedMotion, type MotionValue } from "framer-motion";
 import { cn } from "@/shared/lib/utils";
+import { motion, useReducedMotion, type MotionValue } from "framer-motion";
+import Image from "next/image";
 
 type ProjectChapterImageProps = {
   title: string;

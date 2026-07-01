@@ -4,6 +4,8 @@ import { useReducedMotion } from "framer-motion";
 import { type Project } from "@/entities/project";
 import { useScrollPanelChain } from "@/shared/hooks/use-scroll-panel-chain";
 import { useScrollSpy } from "@/shared/hooks/use-scroll-spy";
+import { workPanelViewportClasses } from "@/shared/lib/work-layout";
+import { cn } from "@/shared/lib/utils";
 import { ProjectChapter } from "@/shared/ui/work/project-chapter";
 import { WorkProgressRail } from "@/shared/ui/work/work-progress-rail";
 
@@ -11,11 +13,9 @@ type WorkProjectsShowcaseProps = {
   projects: Project[];
 };
 
-const PANEL_HEIGHT_CLASS = "lg:h-[min(54vh,480px)]";
-
 export const WorkProjectsShowcase = ({ projects }: WorkProjectsShowcaseProps) => {
   const shouldReduceMotion = useReducedMotion();
-  const { activeIndex, setActiveIndex, scrollContainerRef, setItemRef, scrollToIndex } =
+  const { activeIndex, setActiveIndex, scrollContainerRef, setItemRef, getItemNode, scrollToIndex } =
     useScrollSpy({
       itemCount: projects.length,
     });
@@ -24,7 +24,12 @@ export const WorkProjectsShowcase = ({ projects }: WorkProjectsShowcaseProps) =>
     scrollToIndex(index, shouldReduceMotion ? "auto" : "smooth");
   };
 
-  useScrollPanelChain(scrollContainerRef);
+  useScrollPanelChain(scrollContainerRef, {
+    itemCount: projects.length,
+    getItemNode,
+    scrollToIndex,
+    prefersReducedMotion: shouldReduceMotion ?? false,
+  });
 
   return (
     <div className="relative">
@@ -40,10 +45,13 @@ export const WorkProjectsShowcase = ({ projects }: WorkProjectsShowcaseProps) =>
         Projects
       </p>
 
-      <div
-        className={`lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:items-stretch lg:gap-8 xl:grid-cols-[14rem_minmax(0,1fr)] xl:gap-10 ${PANEL_HEIGHT_CLASS}`}
-      >
-        <aside className="hidden min-h-0 flex-col lg:flex">
+      <div className="lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:items-start lg:gap-8 xl:grid-cols-[14rem_minmax(0,1fr)] xl:gap-10">
+        <aside
+          className={cn(
+            "hidden lg:sticky lg:top-28 lg:flex lg:min-h-0 lg:flex-col",
+            workPanelViewportClasses,
+          )}
+        >
           <WorkProgressRail
             projects={projects}
             activeIndex={activeIndex}
@@ -56,7 +64,11 @@ export const WorkProjectsShowcase = ({ projects }: WorkProjectsShowcaseProps) =>
 
         <div
           ref={scrollContainerRef}
-          className={`work-panel-scroll min-w-0 scroll-smooth overscroll-y-auto lg:snap-y lg:snap-mandatory lg:overflow-y-auto ${PANEL_HEIGHT_CLASS}`}
+          className={cn(
+            "work-panel-scroll min-w-0 scroll-smooth overscroll-y-auto",
+            "lg:snap-y lg:snap-mandatory lg:overflow-y-auto",
+            workPanelViewportClasses,
+          )}
           aria-label="Project showcase scroll area"
         >
           {projects.map((project, index) => (
