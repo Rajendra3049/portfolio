@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content/config/site";
+import { InteractiveCursorGlow } from "@/shared/ui/interactive-cursor-glow";
 import { SiteNav } from "@/shared/ui/site-nav";
 
 const geistSans = Geist({
@@ -59,6 +60,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full bg-zinc-950 text-zinc-50">
+        <InteractiveCursorGlow />
         <div className="flex min-h-full flex-col">
           <SiteNav />
           <main className="flex-1">{children}</main>

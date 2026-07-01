@@ -36,6 +36,9 @@ export const Magnetic = ({ children, className, strength = 12 }: MagneticProps) 
     <motion.div
       className={cn("inline-flex", className)}
       style={{ x: springX, y: springY }}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 380, damping: 22 }}
       onMouseMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const offsetX = event.clientX - rect.left - rect.width / 2;

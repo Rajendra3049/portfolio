@@ -1,16 +1,15 @@
-import type { Transition, Variants } from "framer-motion";
+import type { Variants } from "framer-motion";
+import {
+  motionEase,
+  motionReducedTransition,
+  motionTransition,
+} from "@/shared/lib/motion/shared-motion";
 
-export const workEase = [0.22, 1, 0.36, 1] as const;
+export const workEase = motionEase;
 
-export const workTransition: Transition = {
-  duration: 0.55,
-  ease: workEase,
-};
+export const workTransition = motionTransition;
 
-export const workReducedTransition: Transition = {
-  duration: 0.15,
-  ease: "easeOut",
-};
+export const workReducedTransition = motionReducedTransition;
 
 export const chapterContainerVariants: Variants = {
   hidden: { opacity: 0 },

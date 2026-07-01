@@ -34,6 +34,55 @@ a {
   text-underline-offset: 4px;
 }
 
+@media (pointer: fine) {
+  .interactive-link {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .interactive-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: currentColor;
+    opacity: 0.7;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .interactive-link:hover::after,
+  .interactive-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .interactive-surface {
+    transition:
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.28s ease;
+  }
+
+  .interactive-surface:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+  }
+
+  .interactive-press {
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-surface:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
 .spline-hero-scene,
 .spline-hero-scene > div {
   width: 100%;

@@ -56,7 +56,7 @@ export const AboutPrincipleCard = ({ principle }: AboutPrincipleCardProps) => {
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-xl border border-zinc-800 border-t-2 bg-zinc-900/90 p-5 transition-all hover:-translate-y-0.5 hover:border-zinc-600 hover:shadow-[0_12px_28px_rgba(0,0,0,0.25)] sm:p-6",
+        "interactive-surface group flex h-full flex-col rounded-xl border border-zinc-800 border-t-2 bg-zinc-900/90 p-5 sm:p-6",
         styles.border,
       )}
     >

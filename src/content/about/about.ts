@@ -18,7 +18,7 @@ export const aboutContent = {
   description:
     "I build web applications for real operations — order management, sales channels, and shipment workflows at scale. I care about maintainable architecture, delivery quality, and product outcomes, not just UI polish.",
   story:
-    "I joined Omniful as a Software Engineer Intern and was promoted to Associate Team Lead within two years. In production, I've owned OMS, sales channel, and shipment modules, improved performance across table-heavy enterprise screens, and collaborated with product, backend, and QA on end-to-end launches. Outside work, I've shipped TaskOrbit and Hisab Diary to practice full product ownership from UI through APIs and deployment.",
+    "Promoted from intern to Associate Team Lead in two years. I own OMS, sales channel, and shipment modules in production — and ship side projects end-to-end outside work.",
   highlights: [
     { label: "Experience", value: "~2.5 years" },
     { label: "Current Role", value: "Associate Team Lead" },

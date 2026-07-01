@@ -6,12 +6,19 @@ import {
   experienceProofItemVariants,
   experienceReducedChildVariants,
 } from "@/shared/lib/motion/experience-variants";
+import { cn } from "@/shared/lib/utils";
 
-type ExperienceProofTagsProps = {
+type ProofTagsProps = {
   items: string[];
+  className?: string;
+  "aria-label"?: string;
 };
 
-export const ExperienceProofTags = ({ items }: ExperienceProofTagsProps) => {
+export const ProofTags = ({
+  items,
+  className,
+  "aria-label": ariaLabel = "Highlights",
+}: ProofTagsProps) => {
   const shouldReduceMotion = useReducedMotion();
   const containerVariants = shouldReduceMotion
     ? experienceReducedChildVariants
@@ -22,8 +29,8 @@ export const ExperienceProofTags = ({ items }: ExperienceProofTagsProps) => {
 
   return (
     <motion.div
-      className="mb-6 flex flex-wrap gap-2 sm:mb-8"
-      aria-label="Experience highlights"
+      className={cn("flex flex-wrap gap-2", className)}
+      aria-label={ariaLabel}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.35 }}

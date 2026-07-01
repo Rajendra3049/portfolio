@@ -1,7 +1,7 @@
 import { experiences } from "@/content";
 import { ExperienceAmbientScene } from "@/sections/experience/experience-ambient-scene";
 import { ExperienceCard } from "@/shared/ui/experience-card";
-import { ExperienceProofTags } from "@/shared/ui/experience/experience-proof-tags";
+import { ProofTags } from "@/shared/ui/proof-tags";
 import { FadeIn } from "@/shared/ui/fade-in";
 import { SectionHeading } from "@/shared/ui/section-heading";
 import { SectionShell } from "@/shared/ui/section-shell";
@@ -25,7 +25,11 @@ export const ExperienceSection = () => {
           description="A simple role-by-role timeline showing company, duration, and core responsibilities."
         />
 
-        <ExperienceProofTags items={experienceProofItems} />
+        <ProofTags
+          items={experienceProofItems}
+          className="mb-6 sm:mb-8"
+          aria-label="Experience highlights"
+        />
 
         <FadeIn delay={0.04}>
           <ExperienceCard experiences={experiences} />

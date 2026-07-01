@@ -64,7 +64,7 @@ export const CapabilityCard = ({ capability }: CapabilityCardProps) => {
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-xl border border-zinc-800 border-t-2 bg-zinc-900/90 p-5 transition-all hover:-translate-y-0.5 hover:border-zinc-600 hover:shadow-[0_12px_28px_rgba(0,0,0,0.25)] sm:p-6",
+        "interactive-surface group flex h-full flex-col rounded-xl border border-zinc-800 border-t-2 bg-zinc-900/90 p-5 sm:p-6",
         styles.border,
         capability.featured && "md:col-span-2",
       )}
@@ -98,7 +98,7 @@ export const CapabilityCard = ({ capability }: CapabilityCardProps) => {
       <div className="mt-auto pt-4">
         <Link
           href={capability.proofHref}
-          className="inline-flex items-start gap-1.5 text-sm leading-6 text-zinc-300 transition-colors hover:text-zinc-100"
+          className="interactive-link inline-flex items-start gap-1.5 text-sm leading-6 text-zinc-300 transition-colors hover:text-zinc-100"
         >
           <span className={cn("mt-2 size-1.5 shrink-0 rounded-full", styles.dot)} aria-hidden />
           <span>
