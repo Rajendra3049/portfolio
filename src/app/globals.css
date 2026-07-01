@@ -60,3 +60,28 @@ a {
     scroll-behavior: auto;
   }
 }
+
+@media (min-width: 1024px) {
+  .work-panel-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 185, 129, 0.5) rgba(39, 39, 42, 0.85);
+  }
+
+  .work-panel-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .work-panel-scroll::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background: rgba(39, 39, 42, 0.85);
+  }
+
+  .work-panel-scroll::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.5);
+  }
+
+  .work-panel-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.72);
+  }
+}

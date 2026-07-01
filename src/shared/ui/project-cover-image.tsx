@@ -47,7 +47,7 @@ type ProjectCoverImageProps = {
   category?: string;
   coverImage?: string;
   className?: string;
-  variant?: "card" | "hero";
+  variant?: "card" | "hero" | "chapter";
 };
 
 export const ProjectCoverImage = ({
@@ -60,7 +60,8 @@ export const ProjectCoverImage = ({
 }: ProjectCoverImageProps) => {
   const theme = coverThemes[slug] ?? defaultTheme;
   const isHero = variant === "hero";
-  const showRealImage = isHero && Boolean(coverImage);
+  const isChapter = variant === "chapter";
+  const showRealImage = (isHero || isChapter) && Boolean(coverImage);
 
   if (showRealImage && coverImage) {
     return (
@@ -98,7 +99,7 @@ export const ProjectCoverImage = ({
     <div
       className={cn(
         "relative overflow-hidden border-b border-zinc-800/80 bg-zinc-950",
-        isHero ? "aspect-[21/9] min-h-[220px] sm:min-h-[280px]" : "aspect-[16/10]",
+        isHero ? "aspect-[21/9] min-h-[220px] sm:min-h-[280px]" : isChapter ? "aspect-[16/10] min-h-0" : "aspect-[16/10]",
         className,
       )}
       aria-hidden
