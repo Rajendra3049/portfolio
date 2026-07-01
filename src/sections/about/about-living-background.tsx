@@ -24,7 +24,7 @@ export const AboutLivingBackground = memo(
   ({ parallaxY, className }: AboutLivingBackgroundProps) => {
     const shouldReduceMotion = useReducedMotion();
     const { containerRef, spotlightX, spotlightY, disabled } = useCursorSpotlight();
-    const spotlight = useMotionTemplate`radial-gradient(480px circle at ${spotlightX}% ${spotlightY}%, rgba(99,102,241,0.06), transparent 72%)`;
+    const spotlight = useMotionTemplate`radial-gradient(520px circle at ${spotlightX}% ${spotlightY}%, rgba(16,185,129,0.07), transparent 70%)`;
 
     if (shouldReduceMotion) {
       return (
@@ -32,7 +32,7 @@ export const AboutLivingBackground = memo(
           className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}
           aria-hidden
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(99,102,241,0.05),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(16,185,129,0.07),transparent_52%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(9,9,11,0.05),rgba(9,9,11,0.9))]" />
         </div>
       );
@@ -46,13 +46,13 @@ export const AboutLivingBackground = memo(
         aria-hidden
       >
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(99,102,241,0.07),transparent_52%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(16,185,129,0.08),transparent_52%)]"
           animate={{ opacity: [0.65, 1, 0.65], scale: [1, 1.02, 1] }}
           transition={{ duration: 16, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_90%_80%,rgba(16,185,129,0.05),transparent_48%)]"
-          animate={{ opacity: [0.5, 0.85, 0.5] }}
+          animate={{ opacity: [0.45, 0.8, 0.45] }}
           transition={{
             duration: 18,
             repeat: Number.POSITIVE_INFINITY,
@@ -61,11 +61,31 @@ export const AboutLivingBackground = memo(
           }}
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(9,9,11,0.05),rgba(9,9,11,0.5)_55%,rgba(9,9,11,0.92))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(9,9,11,0.5)_100%)]" />
+
+        <motion.div
+          className="absolute -left-20 top-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl"
+          animate={{
+            x: [0, 14, -6, 10, 0],
+            y: [0, 10, 6, -4, 0],
+            scale: [1, 1.06, 1.02, 1.08, 1],
+          }}
+          transition={{ duration: 17, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute right-[-80px] top-1/3 h-72 w-72 rounded-full bg-emerald-400/6 blur-3xl"
+          animate={{
+            x: [0, -12, 8, -16, 0],
+            y: [0, -8, 6, 2, 0],
+            scale: [1, 1.05, 1.01, 1.07, 1],
+          }}
+          transition={{ duration: 19, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.6 }}
+        />
 
         {PARTICLES.map((particle) => (
           <motion.div
             key={`${particle.top}-${particle.left}`}
-            className="absolute rounded-full bg-indigo-400/15 blur-[1px]"
+            className="absolute rounded-full bg-emerald-400/15 blur-[1px]"
             style={{
               top: particle.top,
               left: particle.left,

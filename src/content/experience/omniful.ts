@@ -24,6 +24,11 @@ export const omnifulExperience: Experience = experienceSchema.parse({
         "Introduced an AI-assisted Cursor workflow adopted by the frontend team, cutting feature scaffolding time by ~50%.",
         "Set frontend architecture standards for modules serving 100+ tenants processing 52K+ orders daily.",
       ],
+      metrics: [
+        { label: "Tenants", value: "100+" },
+        { label: "Orders / day", value: "52K+" },
+        { label: "Scaffolding", value: "~50% faster" },
+      ],
     },
     {
       role: "Software Engineer",
@@ -40,6 +45,11 @@ export const omnifulExperience: Experience = experienceSchema.parse({
         "Built a centralized multi-platform dashboard (Shopify, Amazon) and real-time order tracking via Pusher.",
         "Automated shipment creation from a multi-screen manual flow to under 10 seconds with CASL-based RBAC for multi-role tenant UI.",
       ],
+      metrics: [
+        { label: "Load Time", value: "30% faster" },
+        { label: "Duplication", value: "40% less" },
+        { label: "Pages", value: "15+ optimized" },
+      ],
     },
     {
       role: "Software Engineer Intern",
@@ -55,6 +65,11 @@ export const omnifulExperience: Experience = experienceSchema.parse({
         "Built responsive UIs, reusable components, and form flows with React Hook Form and Redux Toolkit.",
         "Contributed to tenant-facing order and inventory workflows from day one in a fast-moving Agile team.",
         "Improved UI performance and upheld clean code, Git, and Agile practices across the frontend codebase.",
+      ],
+      metrics: [
+        { label: "Focus", value: "Production UI" },
+        { label: "Workflows", value: "Order & inventory" },
+        { label: "Duration", value: "6 months" },
       ],
     },
   ],

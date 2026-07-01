@@ -65,8 +65,8 @@ export const WorkProjectsShowcase = ({ projects }: WorkProjectsShowcaseProps) =>
         <div
           ref={scrollContainerRef}
           className={cn(
-            "work-panel-scroll min-w-0 scroll-smooth overscroll-y-auto",
-            "lg:snap-y lg:snap-mandatory lg:overflow-y-auto",
+            "work-panel-scroll min-w-0 overscroll-y-auto",
+            "lg:overflow-y-auto",
             workPanelViewportClasses,
           )}
           aria-label="Project showcase scroll area"

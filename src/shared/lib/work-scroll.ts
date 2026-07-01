@@ -10,24 +10,13 @@ export const isPanelAtTop = (container: HTMLElement, threshold = 12) =>
   container.scrollTop <= threshold;
 
 export const getPanelScrollTopForIndex = (
-  container: HTMLElement,
+  _container: HTMLElement,
   index: number,
-  itemCount: number,
+  _itemCount: number,
   getItemNode: (index: number) => HTMLElement | null,
 ) => {
   const node = getItemNode(index);
-  if (!node) {
-    return 0;
-  }
-
-  const maxScroll = getPanelMaxScroll(container);
-
-  if (index === itemCount - 1) {
-    // Last card may start below the maximum scroll offset when content is tall.
-    return Math.min(node.offsetTop, maxScroll);
-  }
-
-  return node.offsetTop;
+  return node?.offsetTop ?? 0;
 };
 
 export const resolvePanelIndex = (

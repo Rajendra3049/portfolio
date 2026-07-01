@@ -3,7 +3,7 @@ import { SectionShell } from "@/shared/ui/section-shell";
 
 export const AboutSection = () => {
   return (
-    <SectionShell id="about" className="relative overflow-hidden bg-zinc-950/90">
+    <SectionShell id="about" className="relative overflow-hidden bg-zinc-900/70">
       <AboutSectionContent />
     </SectionShell>
   );

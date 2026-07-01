@@ -155,7 +155,7 @@ const RoleDetailPanel = ({
     ? experienceDetailPanelReducedVariants
     : getExperienceDetailPanelVariants(transitionDirection);
 
-  const metrics = role.parentExperience.metrics;
+  const metrics = role.metrics ?? [];
   const technologies = role.tools ?? role.parentExperience.stack.slice(0, 8);
 
   const metricVariants = shouldReduceMotion

@@ -14,6 +14,8 @@ type UseScrollSpyOptions = {
 };
 
 const DEFAULT_THRESHOLD: number[] = [0, 0.35, 0.5, 0.65, 1];
+const NAVIGATION_LOCK_RELEASE_PX = 12;
+const NAVIGATION_LOCK_TIMEOUT_MS = 900;
 
 const isPanelScrollActive = (container: HTMLElement | null) => {
   if (!container) {
@@ -31,10 +33,52 @@ export const useScrollSpy = ({
   const itemRefs = useRef<(HTMLElement | null)[]>([]);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const ratiosRef = useRef<number[]>([]);
+  const navigationLockRef = useRef<number | null>(null);
+  const navigationLockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const clearNavigationLockTimer = useCallback(() => {
+    if (navigationLockTimerRef.current) {
+      clearTimeout(navigationLockTimerRef.current);
+      navigationLockTimerRef.current = null;
+    }
+  }, []);
+
+  const releaseNavigationLock = useCallback(() => {
+    navigationLockRef.current = null;
+    clearNavigationLockTimer();
+  }, [clearNavigationLockTimer]);
+
+  const tryReleaseNavigationLock = useCallback(() => {
+    const lockedIndex = navigationLockRef.current;
+    const container = scrollContainerRef.current;
+
+    if (lockedIndex === null || !container || !isPanelScrollActive(container)) {
+      return false;
+    }
+
+    const targetTop = getPanelScrollTopForIndex(
+      container,
+      lockedIndex,
+      itemCount,
+      (index) => itemRefs.current[index] ?? null,
+    );
+
+    if (Math.abs(container.scrollTop - targetTop) <= NAVIGATION_LOCK_RELEASE_PX) {
+      setActiveIndex(lockedIndex);
+      releaseNavigationLock();
+      return true;
+    }
+
+    return false;
+  }, [itemCount, releaseNavigationLock]);
 
   const updateActiveFromRatios = useCallback(() => {
     if (itemCount === 0) {
+      return;
+    }
+
+    if (navigationLockRef.current !== null) {
       return;
     }
 
@@ -53,13 +97,13 @@ export const useScrollSpy = ({
       );
       setActiveIndex(indexFromScroll);
       return;
-    } else {
-      const scrollBottom = window.scrollY + window.innerHeight;
-      const pageBottom = document.documentElement.scrollHeight;
-      if (scrollBottom >= pageBottom - 48) {
-        setActiveIndex(itemCount - 1);
-        return;
-      }
+    }
+
+    const scrollBottom = window.scrollY + window.innerHeight;
+    const pageBottom = document.documentElement.scrollHeight;
+    if (scrollBottom >= pageBottom - 48) {
+      setActiveIndex(itemCount - 1);
+      return;
     }
 
     let bestIndex = 0;
@@ -76,6 +120,13 @@ export const useScrollSpy = ({
       setActiveIndex(bestIndex);
     }
   }, [itemCount]);
+
+  const setActiveIndexIfUnlocked = useCallback((index: number) => {
+    if (navigationLockRef.current !== null) {
+      return;
+    }
+    setActiveIndex(index);
+  }, []);
 
   const setItemRef = useCallback(
     (index: number) => (node: HTMLElement | null) => {
@@ -98,32 +149,54 @@ export const useScrollSpy = ({
     [],
   );
 
-  const scrollToIndex = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
-    const node = itemRefs.current[index];
-    if (!node) {
-      return;
-    }
+  const scrollToIndex = useCallback(
+    (index: number, behavior: ScrollBehavior = "smooth") => {
+      const node = itemRefs.current[index];
+      if (!node) {
+        return;
+      }
 
-    const container = scrollContainerRef.current;
+      const container = scrollContainerRef.current;
 
-    if (isPanelScrollActive(container) && container) {
-      const top = getPanelScrollTopForIndex(
-        container,
-        index,
-        itemCount,
-        (i) => itemRefs.current[i] ?? null,
-      );
+      clearNavigationLockTimer();
+      navigationLockRef.current = index;
+      setActiveIndex(index);
 
-      container.scrollTo({
-        top,
-        behavior,
-      });
-    } else {
-      node.scrollIntoView({ behavior, block: "start" });
-    }
+      if (isPanelScrollActive(container) && container) {
+        const top = getPanelScrollTopForIndex(
+          container,
+          index,
+          itemCount,
+          (i) => itemRefs.current[i] ?? null,
+        );
 
-    setActiveIndex(index);
-  }, [itemCount]);
+        container.scrollTo({
+          top,
+          behavior,
+        });
+
+        if (behavior === "auto") {
+          requestAnimationFrame(() => {
+            tryReleaseNavigationLock();
+          });
+        } else {
+          navigationLockTimerRef.current = setTimeout(() => {
+            setActiveIndex(index);
+            releaseNavigationLock();
+          }, NAVIGATION_LOCK_TIMEOUT_MS);
+        }
+      } else {
+        node.scrollIntoView({ behavior, block: "start" });
+        releaseNavigationLock();
+      }
+    },
+    [
+      clearNavigationLockTimer,
+      itemCount,
+      releaseNavigationLock,
+      tryReleaseNavigationLock,
+    ],
+  );
 
   useEffect(() => {
     if (itemCount === 0) {
@@ -140,6 +213,10 @@ export const useScrollSpy = ({
 
       const observer = new IntersectionObserver(
         (entries) => {
+          if (navigationLockRef.current !== null) {
+            return;
+          }
+
           entries.forEach((entry) => {
             const index = itemRefs.current.findIndex((node) => node === entry.target);
             if (index < 0) {
@@ -167,11 +244,28 @@ export const useScrollSpy = ({
     setupObserver();
 
     const container = scrollContainerRef.current;
-    const handleContainerScroll = () => updateActiveFromRatios();
+
+    const handleContainerScroll = () => {
+      if (navigationLockRef.current !== null) {
+        if (tryReleaseNavigationLock()) {
+          return;
+        }
+        return;
+      }
+      updateActiveFromRatios();
+    };
+
+    const handleScrollEnd = () => {
+      if (navigationLockRef.current !== null) {
+        tryReleaseNavigationLock();
+      }
+    };
+
     const handleWindowScroll = () => updateActiveFromRatios();
     const handleResize = () => setupObserver();
 
     container?.addEventListener("scroll", handleContainerScroll, { passive: true });
+    container?.addEventListener("scrollend", handleScrollEnd);
     window.addEventListener("scroll", handleWindowScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
@@ -179,16 +273,25 @@ export const useScrollSpy = ({
       observerRef.current?.disconnect();
       observerRef.current = null;
       container?.removeEventListener("scroll", handleContainerScroll);
+      container?.removeEventListener("scrollend", handleScrollEnd);
       window.removeEventListener("scroll", handleWindowScroll);
       window.removeEventListener("resize", handleResize);
+      clearNavigationLockTimer();
     };
-  }, [itemCount, rootMargin, threshold, updateActiveFromRatios]);
+  }, [
+    clearNavigationLockTimer,
+    itemCount,
+    rootMargin,
+    threshold,
+    tryReleaseNavigationLock,
+    updateActiveFromRatios,
+  ]);
 
   const progress = itemCount <= 1 ? 1 : activeIndex / Math.max(1, itemCount - 1);
 
   return {
     activeIndex,
-    setActiveIndex,
+    setActiveIndex: setActiveIndexIfUnlocked,
     progress,
     scrollContainerRef,
     setItemRef,

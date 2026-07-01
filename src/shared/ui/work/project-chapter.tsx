@@ -74,7 +74,7 @@ export const ProjectChapter = ({
       className={cn(
         contained
           ? cn(
-              "box-border snap-start snap-always px-0 py-3 lg:shrink-0 lg:py-0 lg:pb-6 lg:last:pb-0",
+              "box-border px-0 py-3 lg:shrink-0 lg:py-0 lg:pb-6 lg:last:pb-0",
               workChapterPanelMinClass,
             )
           : "scroll-mt-28 py-8 sm:py-10 lg:py-14",

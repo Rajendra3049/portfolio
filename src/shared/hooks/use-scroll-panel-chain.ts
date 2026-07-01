@@ -1,11 +1,7 @@
 "use client";
 
 import { type RefObject, useEffect, useRef } from "react";
-import {
-  getPanelScrollTopForIndex,
-  isPanelAtBottom,
-  resolvePanelIndex,
-} from "@/shared/lib/work-scroll";
+import { isPanelAtBottom, resolvePanelIndex } from "@/shared/lib/work-scroll";
 
 type UseScrollPanelChainOptions = {
   itemCount: number;
@@ -66,7 +62,6 @@ export const useScrollPanelChain = (
     let isNavigating = false;
     let cooldownUntil = 0;
     let cooldownTimer: ReturnType<typeof setTimeout> | undefined;
-    let settleTimer: ReturnType<typeof setTimeout> | undefined;
 
     const readItemNode = (index: number) => getItemNodeRef.current(index);
 
@@ -80,19 +75,6 @@ export const useScrollPanelChain = (
         clearTimeout(cooldownTimer);
       }
       cooldownTimer = setTimeout(releaseNavigationLock, navigationCooldownMs);
-    };
-
-    const alignToNearestPanel = (behavior: ScrollBehavior = "smooth") => {
-      if (!mediaQuery.matches || isNavigating) {
-        return;
-      }
-
-      const currentIndex = resolvePanelIndex(container, itemCount, readItemNode, edgeThreshold);
-
-      scrollToIndexRef.current(
-        currentIndex,
-        prefersReducedMotionRef.current ? "auto" : behavior,
-      );
     };
 
     const advancePanel = (direction: 1 | -1) => {
@@ -133,11 +115,15 @@ export const useScrollPanelChain = (
 
       const { scrollTop, scrollHeight, clientHeight } = container;
       const atTop = scrollTop <= edgeThreshold;
-      const atBottom = scrollTop + clientHeight >= scrollHeight - edgeThreshold;
+      const atBottom = isPanelAtBottom(container, edgeThreshold);
       const scrollingUp = event.deltaY < 0;
       const scrollingDown = event.deltaY > 0;
+      const onLastPanel =
+        resolvePanelIndex(container, itemCount, readItemNode, edgeThreshold) === itemCount - 1;
 
-      if ((scrollingUp && atTop) || (scrollingDown && atBottom)) {
+      // At panel edges, pass scroll to the page. On the last card, always chain
+      // downward once the last panel is active so the reel does not fight the page.
+      if ((scrollingUp && atTop) || (scrollingDown && (atBottom || onLastPanel))) {
         event.preventDefault();
         window.scrollBy({
           top: event.deltaY,
@@ -168,29 +154,6 @@ export const useScrollPanelChain = (
       advancePanel(accumulatedDelta > 0 ? 1 : -1);
     };
 
-    const maybeAlignAfterSettle = () => {
-      if (!mediaQuery.matches || isNavigating) {
-        return;
-      }
-
-      // Bottom position is valid for the last card — never pull back to the previous one.
-      if (isPanelAtBottom(container, edgeThreshold)) {
-        return;
-      }
-
-      const currentIndex = resolvePanelIndex(container, itemCount, readItemNode, edgeThreshold);
-      const targetTop = getPanelScrollTopForIndex(
-        container,
-        currentIndex,
-        itemCount,
-        readItemNode,
-      );
-
-      if (Math.abs(container.scrollTop - targetTop) > 6) {
-        alignToNearestPanel(prefersReducedMotionRef.current ? "auto" : "smooth");
-      }
-    };
-
     const handleScrollEnd = () => {
       if (!mediaQuery.matches) {
         return;
@@ -198,33 +161,17 @@ export const useScrollPanelChain = (
 
       if (isNavigating) {
         releaseNavigationLock();
-        return;
       }
-
-      maybeAlignAfterSettle();
-    };
-
-    const handleScrollSettle = () => {
-      if (settleTimer) {
-        clearTimeout(settleTimer);
-      }
-
-      settleTimer = setTimeout(maybeAlignAfterSettle, 140);
     };
 
     document.addEventListener("wheel", handleWheel, { passive: false, capture: true });
     container.addEventListener("scrollend", handleScrollEnd);
-    container.addEventListener("scroll", handleScrollSettle, { passive: true });
 
     return () => {
       document.removeEventListener("wheel", handleWheel, { capture: true });
       container.removeEventListener("scrollend", handleScrollEnd);
-      container.removeEventListener("scroll", handleScrollSettle);
       if (cooldownTimer) {
         clearTimeout(cooldownTimer);
-      }
-      if (settleTimer) {
-        clearTimeout(settleTimer);
       }
     };
   }, [

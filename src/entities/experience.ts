@@ -12,6 +12,11 @@ export const experiencePositionSchema = z.object({
   isCurrent: z.boolean().optional(),
   isCompact: z.boolean().optional(),
   impactPoints: z.array(z.string().min(1)).min(1).max(4),
+  metrics: z
+    .array(z.object({ label: z.string().min(1), value: z.string().min(1) }))
+    .min(1)
+    .max(3)
+    .optional(),
 });
 
 export const experienceSchema = z

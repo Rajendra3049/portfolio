@@ -40,7 +40,7 @@ export const AboutWorkflowTimeline = memo(
           variants={containerVariants}
         >
           <div
-            className="absolute bottom-2 left-[15px] top-2 w-px bg-gradient-to-b from-indigo-500/40 via-emerald-500/30 to-zinc-500/20"
+            className="absolute bottom-2 left-[15px] top-2 w-px bg-gradient-to-b from-emerald-500/40 via-emerald-500/20 to-zinc-500/20"
             aria-hidden
           />
 
