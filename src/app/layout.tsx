@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content/config/site";
+import { Footer } from "@/components/footer";
 import { InteractiveCursorGlow } from "@/shared/ui/interactive-cursor-glow";
 import { SiteNav } from "@/shared/ui/site-nav";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
         <div className="flex min-h-full flex-col">
           <SiteNav />
           <main className="flex-1">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

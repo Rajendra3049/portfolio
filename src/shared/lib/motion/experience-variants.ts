@@ -5,6 +5,20 @@ export const experienceEase = workEase;
 
 export const experienceTransition: Transition = workTransition;
 
+export const experienceSpring: Transition = {
+  type: "spring",
+  stiffness: 380,
+  damping: 32,
+};
+
+export const experienceLayoutSpring: Transition = {
+  layout: {
+    type: "spring",
+    stiffness: 420,
+    damping: 36,
+  },
+};
+
 export const experienceShellVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -144,25 +158,77 @@ export const experienceReducedChildVariants: Variants = {
 export const getExperienceDetailPanelVariants = (direction: number): Variants => ({
   initial: {
     opacity: 0,
-    x: direction >= 0 ? 28 : -28,
-    scale: 0.98,
-    filter: "blur(6px)",
+    y: direction >= 0 ? 10 : -10,
+    filter: "blur(4px)",
   },
   animate: {
     opacity: 1,
-    x: 0,
-    scale: 1,
+    y: 0,
     filter: "blur(0px)",
-    transition: experienceTransition,
+    transition: {
+      opacity: { duration: 0.32, ease: experienceEase },
+      y: experienceSpring,
+      filter: { duration: 0.28, ease: experienceEase },
+    },
   },
   exit: {
     opacity: 0,
-    x: direction >= 0 ? -20 : 20,
-    scale: 0.99,
-    filter: "blur(4px)",
-    transition: { duration: 0.22, ease: experienceEase },
+    y: direction >= 0 ? -8 : 8,
+    filter: "blur(3px)",
+    transition: { duration: 0.2, ease: experienceEase },
   },
 });
+
+export const experienceDetailSectionVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: 0.06 },
+  },
+};
+
+export const experienceDetailSectionItemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: experienceTransition,
+  },
+};
+
+export const experienceMetricGridVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.08 },
+  },
+};
+
+export const experienceMetricItemVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: experienceSpring,
+  },
+};
+
+export const experienceTechListVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.04, delayChildren: 0.1 },
+  },
+};
+
+export const experienceTechItemVariants: Variants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: experienceEase },
+  },
+};
 
 export const experienceDetailPanelReducedVariants: Variants = {
   initial: { opacity: 0 },
