@@ -4,9 +4,15 @@ type SectionShellProps = {
   id?: string;
   children: React.ReactNode;
   className?: string;
+  containerClassName?: string;
 };
 
-export const SectionShell = ({ id, children, className }: SectionShellProps) => {
+export const SectionShell = ({
+  id,
+  children,
+  className,
+  containerClassName,
+}: SectionShellProps) => {
   return (
     <section
       id={id}
@@ -15,7 +21,14 @@ export const SectionShell = ({ id, children, className }: SectionShellProps) => 
         className,
       )}
     >
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10">{children}</div>
+      <div
+        className={cn(
+          "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-10",
+          containerClassName,
+        )}
+      >
+        {children}
+      </div>
     </section>
   );
 };
